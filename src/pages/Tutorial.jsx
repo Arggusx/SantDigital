@@ -33,7 +33,7 @@ const Tutorial = () => {
                     </p>
                 
                 <span id='credo' className='mb-5 mt-15 text-2xl font-bold font-oswald'>CREDO</span>
-                    <p className='pl-7 mt-7 mb-7 whitespace-pre-line font-body text-lg'>Voçê pode, também, invovar o Espírito Santo com a oração do <strong>Divino Espírito Santo</strong> antes de rezar o credo para ter uma oração <br /> mais completa e ter a ajuda do Espírito Santo, clique <Link to="/home/oracoes">aqui</Link> para ver a oração.</p>
+                    <p className='pl-7 mt-7 mb-7 whitespace-pre-line font-body text-lg'>Voçê pode, também, invovar o Espírito Santo com a oração do <strong>Divino Espírito Santo</strong> antes de rezar o credo para ter uma oração <br /> mais completa e ter a ajuda do Espírito Santo, clique <Link className='font-bold hover:cursor-pointer hover:underline text-yellow-500' to="/home/oracoes">aqui</Link> para ver a oração.</p>
                     <p className='border-l-2 border-gray-300 mb-8 pl-7 ml-8 mt-4 whitespace-pre-line font-body text-lg  text-gray-800 italic'>
                         Creio em Deus Pai Todo-Poderoso,<br />Criador do Céu e da Terra;<br />e em Jesus Cristo, Seu único Filho, Nosso Senhor;<br />que foi concebido pelo poder do Espírito Santo.<br />Nasceu da Virgem Maria,<br />padeceu sob Pôncio Pilatos,<br />foi crucificado, morto e sepultado;<br />desceu à mansão dos mortos;<br />Ressuscitou ao terceiro dia; subiu aos Céus,<br />está sentado à direita de Deus Pai Todo-Poderoso,<br />donde há de vir a julgar os vivos e os mortos.<br />Creio no Espírito Santo,<br />na Santa Igreja Católica,<br />na Comunhão dos Santos,<br />na remissão dos pecados,<br />na ressurreição da carne,<br />na vida eterna. <strong>Amém.</strong></p>
 
@@ -55,7 +55,7 @@ const Tutorial = () => {
                     <p className='border-l-2 border-gray-300 pl-7 ml-8 mt-4 whitespace-pre-line font-body text-lg  text-gray-800 italic'>- Glória ao Pai, ao Filho e ao Espírito Santo. Como era no princípio, agora e sempre. <strong>Amém.</strong></p>    
                     <div className='ml-8 border-l-2 border-gray-300'>ﾠ</div>
                     <p className='border-l-2 border-gray-300 mb-8 pl-7 ml-8 whitespace-pre-line font-body text-lg  text-gray-800 italic'>- Ó meu Jesus, perdoai-nos e livrai-nos do fogo do inferno; levai as almas todas para o Céu, principalmente as que mais precisarem.</p>
-                    <p className=' mb-8 pl-7 ml-8 whitespace-pre-line font-body text-lg  text-red-900 font-bold italic'>(Depois que seguir todos esses passos, reze sempre a Jaculatória, anuncie qual mistério será contemplado [Ex.: No Segundo Mistério Glorioso contemplamos...], <br /> um Pai-Nosso e dez Ave-Marias, faça isso até terminar de rezar  e contemplar todos os 5 mistérios)</p>
+                    <p className=' mb-8 pl-7 ml-8 whitespace-pre-line font-body text-lg  text-red-900 font-bold italic'>(Depois que seguir todos esses passos, reze sempre a Jaculatória, anuncie qual mistério será contemplado [Ex.: No Segundo Mistério Glorioso contemplamos...], um Pai-Nosso e dez Ave-Marias, faça isso até terminar de rezar  e contemplar todos os 5 mistérios)</p>
 
                     <span id='salve' className='mb-5 mt-15 text-2xl font-bold'>SALVE RAINHA</span>
                     <p className='pl-7 mb-7 mt-10 text-lg'>Depois de rezar os 5 mistérios, na medalha que tem no terço, reze a oração de agradecimento seguida da <strong>Salve Rainha</strong></p>
