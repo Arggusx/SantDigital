@@ -1,13 +1,29 @@
 @import "tailwindcss";
 
-/* #divisoes-title {
-    font-family: 'Oswald', sans-serif;
-} */
+@font-face {
+    font-family: 'Alex Brush';
+    src: url('/src/assets/fontes/AlexBrush-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
 
-#oracoes-title, #evangelho-title, #divisoes-title, #sinal-cruz, #oferecimento, #credo, #pai-nosso, #agr, #sr, #ave-maria, #gozosos, #luminosos, #gloriosos, #dolorosos, #gloria, #salve {
+  @font-face {
+    font-family: 'Tinta Cehatti';
+    src: url('/src/assets/fontes/Cinta Sehatti .ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+#oracoes-title, #title-nav1, #title-nav2, #title-nav3, #title-nav4, #evangelho-title, #divisoes-title, #sinal-cruz, #oferecimento, #credo, #pai-nosso, #agr, #sr, #ave-maria, #gozosos, #luminosos, #gloriosos, #dolorosos, #gloria, #salve {
     font-family: "Merriweather", serif
 }
 
 #title {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) ;
+    font-family: 'Tinta Cehatti', cursive;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#title2 {
+    font-family: 'Alex Brush', cursive;
+    font-size: 40px;
 }
