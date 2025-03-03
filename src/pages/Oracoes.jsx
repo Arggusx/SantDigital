@@ -3,7 +3,8 @@ import React from 'react'
 const Oracoes = () => {
   return (
     <div className="p-4">
-      <h1 id='title2' className="font-bold pl-5 pt-20 underline underline-offset-4 decoration-2">Orações</h1>
+      <h1 className="text-2xl font-bold text-center pt-20">Orações</h1>
+      <p className="text-gray-700 text-center mt-2">Orações que todo católico deveria saber.</p>
 
       <p id='oracoes-title' className='mt-15 ml-5 text-2xl font-bold'>Orações para rezar o terço:</p>
             <p className='ml-5 mt-5 text-xl font-bold underline font-title'>Credo ou Creio</p> 
