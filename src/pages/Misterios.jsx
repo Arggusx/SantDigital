@@ -3,7 +3,7 @@ import React from 'react'
 const Misterios = () => {
   return (
     <div className="p-4">
-        <h1 id='title2' className="text-4xl font-bold ml-5 underline underline-offset-7 pt-20">Mistérios Diários</h1>
+        <h1 id='title2' className="text-4xl text-amber-400 font-bold mt-10 ml-5 underline underline-offset-7 pt-20">Mistérios Diários</h1>
         <hr className="text-yellow-400 border-2 mt-7 w-full rounded" />
         <h2 className='mt-5 text-2xl font-semibold italic ml-10 mr-10 text-center mb-5'>Para rezar o terço corretamente, é importante saber qual mistério corresponde ao dia. Cada dia da semana tem um conjunto específico de mistérios que orientam a oração e a meditação. Confira abaixo os mistérios do dia e siga essa tradição para uma experiência mais completa e significativa.</h2>
         <hr className="text-yellow-400 border-2 mb-5 w-full rounded" />

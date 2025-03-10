@@ -1,15 +1,14 @@
-import React from 'react'
-import tercoTutor from '../assets/Img/terco-tutor.png'
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import tercoTutor from '../assets/Img/terco-tutor.png';
+import { Link, useLocation } from 'react-router-dom';
 
 const Tutorial = () => {
   return (
     <div className="p-4">
-        <h1 id='title2' className="text-4xl font-bold pl-5 mt-10 pt-10 underline underline-offset-7 decoration-2">Como Rezar o Terço</h1>
+        <h1 id='title2' className="text-amber-400 text-4xl font-bold pl-5 mt-20 pt-10 underline underline-offset-7 decoration-2">Como Rezar o Terço</h1>
         <hr className="pl-4 border-t-3 border-yellow-400 mt-10 w-full rounded" />
         <h2 className='mt-5 text-2xl font-semibold italic ml-10 mr-10 text-center' >Rezar o Terço todos os dias, como Nossa Senhora pediu em Fátima, é um compromisso de amor e confiança em Deus. Essa oração nos permite meditar sobre a vida de Cristo, fortalecendo nossa conexão espiritual e nos aproximando de Sua presença em nosso dia a dia. Além de ser uma demonstração de fé e devoção a Nossa Senhora, o Terço também é um ato que une famílias e comunidades na oração, fortalecendo os laços espirituais e trazendo bênçãos para todos.</h2>
         <hr className="pl-4 border-t-3 border-yellow-400 my-7 w-full rounded" />
-        
         <div>
             <p id='divisoes-title' className='mb-5 mt-15 ml-5 text-2xl font-bold font-oswald'>DIVISÕES DO TERÇO</p>
             <span className='pl-7 mb-7 mt-10 text-lg'>O terço é uma corrente composta de contas, crucifixo e medalha, dividido da seguinte forma: </span>
@@ -32,7 +31,7 @@ const Tutorial = () => {
                     </p>
                 
                 <span id='credo' className='mb-5 mt-15 text-2xl font-bold font-oswald'>CREDO</span>
-                    <p className='pl-7 mt-7 mb-7 whitespace-pre-line font-body text-lg'>Voçê pode, também, invovar o Espírito Santo com a oração do <strong>Divino Espírito Santo</strong> antes de rezar o credo para ter uma oração <br /> mais completa e ter a ajuda do Espírito Santo, clique <Link className='underline-offset-3 font-bold hover:cursor-pointer underline text-yellow-500' to="/home/oracoes">aqui</Link> para ver uma lista completa de orações.</p>
+                    <p className='pl-7 mt-7 mb-7 whitespace-pre-line font-body text-lg'>Voçê pode, também, invovar o Espírito Santo com a oração do <strong>Divino Espírito Santo</strong> antes de rezar o credo para ter uma oração <br /> mais completa e ter a ajuda do Espírito Santo, clique <Link className='underline-offset-3 font-bold hover:cursor-pointer underline text-yellow-500' to="/home/oracoes#espirito-santo">aqui</Link> para ver uma lista completa de orações.</p>
                     <p className='border-l-2 border-gray-300 mb-8 pl-7 ml-8 mt-4 whitespace-pre-line font-body text-lg  text-gray-800 italic'>
                         Creio em Deus Pai Todo-Poderoso,<br />Criador do Céu e da Terra;<br />e em Jesus Cristo, Seu único Filho, Nosso Senhor;<br />que foi concebido pelo poder do Espírito Santo.<br />Nasceu da Virgem Maria,<br />padeceu sob Pôncio Pilatos,<br />foi crucificado, morto e sepultado;<br />desceu à mansão dos mortos;<br />Ressuscitou ao terceiro dia; subiu aos Céus,<br />está sentado à direita de Deus Pai Todo-Poderoso,<br />donde há de vir a julgar os vivos e os mortos.<br />Creio no Espírito Santo,<br />na Santa Igreja Católica,<br />na Comunhão dos Santos,<br />na remissão dos pecados,<br />na ressurreição da carne,<br />na vida eterna. <strong>Amém.</strong></p>
 
@@ -43,16 +42,16 @@ const Tutorial = () => {
                 <span id='ave-maria' className='mb-5 mt-15 text-2xl font-bold'>AVE MARIA</span>
                     <p className='pl-7 mb-7 mt-10 text-lg'>Essas são as três primeiras contas pequenas, a partir de agora toda conta pequena que aparecer sera rezada a Ave Maria.
                         <li className='border-l-2 border-gray-300 pl-7 ml-2 mt-4 text-lg  text-gray-800 italic'><strong>Primeira Ave-Maria </strong> em honra a Deus Pai que nos criou: <strong>[Reze uma Ave-Maria]</strong></li>
-                        <span className='ml-2 border-l-2 border-gray-300 pt-1 pb-1'>ﾠ</span>
+                            <span className='ml-2 border-l-2 border-gray-300 pt-1 pb-1'>ﾠ</span>
                         <li className='border-l-2 border-gray-300 pl-7 ml-2 text-lg  text-gray-800 italic'><strong>Segunda Ave-Maria </strong> a Deus Filho que nos remiu: <strong>[Reze uma Ave-Maria]</strong></li>
-                        <span className='ml-2 border-l-2 border-gray-300 pt-1 pb-1'>ﾠ</span>                        
+                            <span className='ml-2 border-l-2 border-gray-300 pt-1 pb-1'>ﾠ</span>                        
                         <li className='border-l-2 border-gray-300 mb-8 pl-7 ml-2 text-lg  text-gray-800 italic'><strong>Terceira Ave-Maria </strong> ao Espírito Santo que nos santifica: <strong>[Reze a última Ave-Maria]</strong></li>
                     </p>
 
                 <span id='gloria' className='mb-5 mt-15 text-2xl font-bold'>JACULATÓRIA</span>
                     <p className='pl-7 mb-7 mt-10 whitespace-pre-line font-body text-lg'>Sempre após as primeiras três Ave-Maria e terminar de rezar cada mistério, rezamos a jaculatória.</p>
                     <p className='border-l-2 border-gray-300 pl-7 ml-8 mt-4 whitespace-pre-line font-body text-lg  text-gray-800 italic'>- Glória ao Pai, ao Filho e ao Espírito Santo. Como era no princípio, agora e sempre. <strong>Amém.</strong></p>    
-                    <div className='ml-8 border-l-2 border-gray-300'>ﾠ</div>
+                    <span className='ml-8 border-l-2 border-gray-300'>ﾠ</span>
                     <p className='border-l-2 border-gray-300 mb-8 pl-7 ml-8 whitespace-pre-line font-body text-lg  text-gray-800 italic'>- Ó meu Jesus, perdoai-nos e livrai-nos do fogo do inferno; levai as almas todas para o Céu, principalmente as que mais precisarem.</p>
                     <p className=' mb-8 pl-7 ml-8 whitespace-pre-line font-body text-lg  text-red-900 font-bold italic'>(Depois que seguir todos esses passos, reze sempre a Jaculatória, anuncie <Link to="/home/misterio" className='underline underline-offset-3 text-yellow-500'> qual mistério</Link> será contemplado [Ex.: No Segundo Mistério Glorioso contemplamos...], um Pai-Nosso e dez Ave-Marias, faça isso até terminar de rezar  e contemplar todos os 5 mistérios)</p>
 
@@ -62,7 +61,7 @@ const Tutorial = () => {
                     <p className='border-l-2 border-gray-300 mb-8 pl-7 ml-8 whitespace-pre-line font-body text-lg  text-gray-800 italic'>"Infinitas graças vos damos, Soberana Rainha, <br /> pelos benefícios que todos os dias recebemos <br /> de vossas mãos liberais.<br /> Dignai-vos, agora e para sempre, <br /> tomar-nos debaixo do vosso poderoso amparo e, <br /> para mais vos agradecer, <br /> vos saudamos com uma <strong>Salve Rainha</strong> ".</p>
                     <p id='sr' className='font-bold text-lg ml-5 mb-5'>Salve Rainha</p>
                     <p className='border-l-2 border-gray-300 pl-7 ml-8 mt-4 text-lg  text-gray-800 italic'>Salve, Rainha, Mãe de Misericórdia, <br />vida, doçura e esperança nossa, Salve.<br />A Vós bradamos, os degredados filhos de Eva.<br />A Vós suspiramos, gemendo e chorando neste vale de lágrimas.<br />Eia, pois, Advogada nossa,<br />esses Vossos olhos misericordiosos a nós volvei;<br />e depois deste desterro nos mostrai Jesus,<br />bendito Fruto do Vosso ventre. <br /> Ó clemente, ó piedosa, ó doce sempre Virgem Maria.<br /></p>
-                    <div className='ml-8 border-l-2 border-gray-300'>ﾠ</div>
+                    <span className='ml-8 border-l-2 border-gray-300'>ﾠ</span>
                     <p className='border-l-2 border-gray-300 pl-7 ml-8 text-lg  text-gray-800 italic'>V. Rogai por nós, Santa Mãe de Deus,<br />R. Para que sejamos dignos das promessas de Cristo. <strong>Amém</strong></p>
                     <p className='mt-8 mb-8 pl-7 ml-8 whitespace-pre-line font-body text-lg  text-red-900 font-bold italic'>Obs.: Não se esqueca de fazer o sinal da cruz novamente após o término.</p>
             </div>

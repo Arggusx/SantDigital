@@ -8,7 +8,7 @@ const Main = () => {
         {/* Mensagem de Boas-Vindas */}
         <div className='mt-5 flex flex-col items-center p-4'>
             <h1 id='title2' className='text-4xl font-bold text-center pt-20'>Bem-vindo ao Digital Sanctum</h1>
-            <p className='text-white-700 text-center mt-2 max-w-xl  pt-10 pb-10 italic text-gray-600'>
+            <p className=' text-center mt-2 max-w-xl  pt-10 pb-10 italic text-gray-600'>
               <hr className="text-yellow-400 border-2 mb-5 w-full rounded" />
                 Este site foi criado para ajudar quem deseja aprender a rezar o terço, oferecendo orientações sobre os mistérios do dia, 
                 a liturgia diária e um guia detalhado para cada etapa da oração. Além disso, disponibiliza uma lista completa de diversas 

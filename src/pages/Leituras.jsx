@@ -55,7 +55,7 @@ const Leituras = () => {
       .catch(error => console.error("Erro ao buscar liturgia:", error));
   }, []);
     
-// Substituir os dias da semana pelo formato desejado
+// Formata os dia corretamente
   const formatarLiturgia = (texto) => {
     if (!texto) return "";
 
@@ -68,23 +68,48 @@ const Leituras = () => {
 
     return textoFormatado;
   };
+
+  // Aplica as cores litúrgicas
+  function getTextColor(cor) {
+    const colors = {
+      Verde: "text-green-500",
+      Branco: "text-white",
+      Vermelho: "text-red-500",
+      Roxo: "text-purple-500"
+    };
+  
+    return colors[cor] || "bg-gray-300 text-gray-500";
+  }
+
+  function getBgColor(cor) {
+    const colors = {
+      Verde: "bg-green-300",
+      Branco: "bg-white-300",
+      Vermelho: "bg-red-300",
+      Roxo: "bg-purple-300"
+    };
+  
+    return colors[cor] || "bg-gray-300 text-gray-500";
+  }
     
 
   return (
     <>
-      <h1 
-        id="title2" 
-        className={`font-bold text-left ml-10 pt-5 sm:text-4xl px-1
-          ${cor === "Verde" ? "text-green-500" :
-            cor === "Branco" ? "text-white" :
-            cor === "Vermelho" ? " text-red-500" :
-            cor === "Roxo" ? "text-purple-500" :
-            "bg-gray-300 text-gray-500"
-          }`}>
-        {formatarLiturgia(liturgia)} | Cor {cor}
-      </h1>
+
+        {/* Desfoque */}
+
+          <div
+            id="title2"
+            className={`font-bold text-left text-4xl mt-20 px-5 py-2 text-amber-500 z-10 relative`}
+            // style={{ textSdadow: '3px 2px 3px rgba(128, 0, 128, 0.5)' }}
+          >
+            {formatarLiturgia(liturgia)} - Cor: 
+            <span className={`${getTextColor(cor)}`}> {cor}</span>
+          </div>
+
+
       
-    <div className="mt-20 ml-10 relative">
+    <div className="mt-5 ml-5 relative sm:ml-5 md:ml-10">
 
       {/* Botões lado a lado */}
       <div className="flex space-x-2">
@@ -92,7 +117,7 @@ const Leituras = () => {
         {/* Primeira Leitura */}
         {leituras.primeiraLeitura.length > 0 && (
           <button
-            className="bg-yellow-200 text-xl font-bold p-2 border hover:bg-green-300 hover:cursor-pointer rounded-l-md"
+            className={`text-xl ${getBgColor(cor)} font-bold px-2 py-1 border hover:text-yellow-400 hover:bg-gray-400 hover:cursor-pointer rounded-l-xl`}
             onClick={() => {
               setMostrarPrimeiraLeitura(!mostrarPrimeiraLeitura);
               setMostrarSegundaLeitura(false);
@@ -107,7 +132,7 @@ const Leituras = () => {
         {/* Salmo */}
         {leituras.salmo.length > 0 && (
           <button
-            className="bg-yellow-200 text-xl font-bold p-2 border hover:bg-green-300 hover:cursor-pointer"
+            className={`${getBgColor(cor)} text-xl font-bold px-2 border hover:text-yellow-400 hover:bg-gray-400 hover:cursor-pointer`}
             onClick={() => {
               setMostrarSalmo(!mostrarSalmo);
               setMostrarEvangelho(false);
@@ -122,7 +147,7 @@ const Leituras = () => {
         {/* Segunda Leitura */}
         {leituras.segundaLeitura.length > 0 && (
           <button
-            className="bg-yellow-200 text-xl font-bold p-2 border hover:bg-green-300 hover:cursor-pointer"
+            className={`${getBgColor(cor)} text-xl font-bold px-2 border hover:text-yellow-400 hover:bg-gray-400 hover:cursor-pointer`}
             onClick={() => {
               setMostrarSegundaLeitura(!mostrarSegundaLeitura);
               setMostrarEvangelho(false);
@@ -137,7 +162,7 @@ const Leituras = () => {
         {/* Evangelho */}
         {leituras.evangelho.length > 0 && (
           <button
-            className="bg-yellow-200 text-xl font-bold p-2 rounded-r-md border hover:bg-green-300 hover:cursor-pointer"
+            className={`${getBgColor(cor)} text-xl font-bold px-2 rounded-r-xl border hover:text-yellow-400 hover:bg-gray-400 hover:cursor-pointer`}
             onClick={() => {
               setMostrarEvangelho(!mostrarEvangelho);
               setMostrarSegundaLeitura(false);
@@ -151,7 +176,7 @@ const Leituras = () => {
       </div>
 
       {mostrarPrimeiraLeitura && (
-        <div className="gap-y-4 grid absolute left-0 p-5 bg-white w-[90%] md:w-[60%] lg:w-[50%]">
+        <div className="gap-y-4 grid absolute left-0 p-5 w-[90%] md:w-[60%] lg:w-[50%]">
           <p className="text-xl font-semibold leading-loose">Primeira leitura ({leituras.primeiraLeitura[0].referencia})</p>
           <p className='text-xl font-semibold'> {leituras.primeiraLeitura[0].titulo}</p>
           <p className="italic border-l-2 border-gray-400 pl-3 text-lg" >{leituras.primeiraLeitura[0].texto}</p>
@@ -160,26 +185,28 @@ const Leituras = () => {
         </div>
       )}
       {mostrarSalmo && (
-        <div className="absolute left-0 mt-2 p-5 bg-white w-[90%] md:w-[60%] lg:w-[50%]">
+        <div className="absolute left-0 mt-2 p-5  w-[90%] md:w-[60%] lg:w-[50%]">
           <h2 className="text-xl font-semibold mb-5">Responsório {leituras.salmo[0].referencia}</h2>
           <p className="text-xl font-semibold mb-5">Refrão: {leituras.salmo[0].refrao}</p>
           <p className="italic border-l-2 border-gray-300 pl-3 text-lg">{leituras.salmo[0].texto}</p>
         </div>
       )}
       {mostrarSegundaLeitura && (
-        <div className="absolute left-0 mt-2 p-5 bg-white w-[90%] md:w-[60%] lg:w-[50%]">
+        <div className="absolute left-0 mt-2 p-5 w-[90%] md:w-[60%] lg:w-[50%]">
           <p className="text-xl font-bold">Segunda leitura ({leituras.segundaLeitura[0].referencia})</p>
           <p className="text-xl font-bold">{leituras.segundaLeitura[0].titulo}</p>
           <p className="text-lg italic">{leituras.segundaLeitura[0].texto}</p>
+          <p className='text-xl mt-10 '>-Palavra do Senhor</p>
+          <p className='text-xl font-semibold'> -Graças a Deus</p>
         </div>
       )}
       {mostrarEvangelho && (
-        <div className="absolute left-0 mt-2 p-5 bg-white w-[90%] md:w-[60%] lg:w-[50%]">
+        <div className="absolute left-0 mt-2 p-5 w-[90%] md:w-[60%] lg:w-[50%]">
           <p className="text-xl font-semibold mb-5">Evangelho {leituras.evangelho[0].referencia}</p>
           <h2 className="text-xl font-semibold mb-5">{leituras.evangelho[0].titulo}</h2>
           <p className="italic border-l-2 border-gray-300 pl-3 text-lg mb-5">{leituras.evangelho[0].texto}</p>
-          <p className='text-xl'>- Palavra do Senhor</p>
-          <p className='font-semibold text-xl'>- Graças a Deus</p>   
+          <p className='text-xl'>- Palavra da Salvação</p>
+          <p className='font-semibold text-xl'>- Glória a vós, Senhor</p>   
         </div>
       )}
     </div>
