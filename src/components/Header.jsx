@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import Icon from '../assets/Img/140133.png';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -29,10 +28,10 @@ const Header = () => {
   }, [menuOpen]);
 
   return (
-    <div className="w-full bg-yellow-200 shadow-md z-50">
+    <div className="w-full bg-sky-300 shadow-md z-50">
       <nav className="flex flex-row font-bold justify-between items-center p-6 w-full mx-auto">
         {/* Título */}
-        <Link id="title" to="/"  className="text-xl">Digital Sanctum</Link>
+        <Link id="title" to="/"  className="text-xl text-amber-400">Digital Sanctum</Link>
 
         {/* Botão de menu (mobile) */}
         <button 
@@ -71,22 +70,20 @@ const Header = () => {
 const menuItems = () => (
   <>
     <li id='menuNav' className="flex items-center gap-x-2">
-      <img className="h-5" src={Icon} alt="" />
       <Link 
           id='title-nav1' 
           onClick={() => setMenuOpen(false)} 
           to="/home/misterio" 
-          className="text-xl">
+          className="text-xl border-2 border-amber-500 bg-stone-100 rounded-3xl px-4 py-1">
         Mistérios
       </Link>
     </li>
     <li className='hidden md:block'>|</li>
 
     <li id='menuNav' className="flex items-center gap-x-2">
-      <img className="h-5" src={Icon} alt="" />
       <Link
             id='title-nav2'
-            className="text-xl"
+            className="text-xl border-2 border-amber-500 bg-stone-100 rounded-3xl px-4 py-1"
             onClick={() => setMenuOpen(false)} 
             to="/home/leituras">
         Leituras
@@ -95,10 +92,9 @@ const menuItems = () => (
     <li className='hidden md:block'>|</li>
 
     <li id='menuNav' className="flex items-center gap-x-2">
-      <img className="h-5" src={Icon} alt="" />
       <Link 
           id='title-nav3'
-          className="text-xl" 
+          className="text-xl border-2 border-amber-500 bg-stone-100 rounded-3xl px-4 py-1" 
           to="/home/tutorial" 
           onClick={() => setMenuOpen(false)}>
         Rezar o Terço
@@ -107,10 +103,9 @@ const menuItems = () => (
     <li className='hidden md:block'>|</li>
 
     <li id='menuNav' className="flex items-center gap-x-2 lg:mr-20 mr-5">
-      <img className="h-5" src={Icon} alt="" />
       <Link 
           id='title-nav4'
-          className="text-xl" 
+          className="text-xl border-2 border-amber-500 bg-stone-100 rounded-3xl px-4 py-1" 
           to="/home/oracoes" 
           onClick={() => setMenuOpen(false)}>
         Orações
