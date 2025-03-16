@@ -28,10 +28,10 @@ const Header = () => {
   }, [menuOpen]);
 
   return (
-    <div className="w-full bg-sky-300 shadow-md z-50">
+    <div className="w-full bg-yellow-100 shadow-md z-50">
       <nav className="flex flex-row font-bold justify-between items-center p-6 w-full mx-auto">
         {/* Título */}
-        <Link id="title" to="/"  className="text-xl text-amber-400">Digital Sanctum</Link>
+        <Link id="title" to="/"  className="text-xl">Digital Sanctum</Link>
 
         {/* Botão de menu (mobile) */}
         <button 
@@ -49,7 +49,7 @@ const Header = () => {
 
       {/* Menu lateral (mobile) */}
       <div 
-        className={`hover: fixed top-0 right-0 h-full bg-yellow-100 shadow-lg transition-transform duration-300 ease-in-out md:hidden 
+        className={`hover:cursor-pointer fixed top-0 right-0 h-full bg-yellow-100 shadow-lg transition-transform duration-300 ease-in-out md:hidden 
         ${menuOpen ? "translate-x-0 w-auto max-w-sm" : "translate-x-full w-40 overflow-hidden"}`}
         ref={menuRef}
       >
@@ -59,7 +59,7 @@ const Header = () => {
         </button>
 
         {/* Itens do menu */}
-        <ul className="flex flex-col gap-y-4 mt-12 p-4">
+        <ul className=" flex flex-col gap-y-4 mt-12 p-4">
           {menuItems()}
         </ul>
       </div>
@@ -97,7 +97,7 @@ const menuItems = () => (
           className="text-xl border-2 border-amber-500 bg-stone-100 rounded-3xl px-4 py-1" 
           to="/home/tutorial" 
           onClick={() => setMenuOpen(false)}>
-        Rezar o Terço
+        Terço
       </Link>
     </li>
     <li className='hidden md:block'>|</li>
