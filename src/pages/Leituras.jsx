@@ -100,16 +100,16 @@ const Leituras = () => {
 
           <div
             id="title2"
-            className={`font-bold text-left text-4xl mt-20 px-5 py-2 text-amber-500 z-10 relative`}
+            className={`font-bold text-left text-4xl mt-10 md:mt-20 px-5 py-2 text-gray-800 z-10`}
             // style={{ textSdadow: '3px 2px 3px rgba(128, 0, 128, 0.5)' }}
           >
-            {formatarLiturgia(liturgia)} - Cor: 
-            <span className={`${getTextColor(cor)}`}> {cor}</span>
+            {formatarLiturgia(liturgia)}ﾠ-ﾠCor: 
+            <span className={`${getTextColor(cor)}`}>ﾠ{cor}</span>
           </div>
 
 
       
-    <div className="mt-5 ml-5 relative sm:ml-5 md:ml-10">
+    <div className="mt-5 ml-5 sm:ml-5 md:ml-10">
 
       {/* Botões lado a lado */}
       <div className="flex space-x-2">
@@ -176,35 +176,42 @@ const Leituras = () => {
       </div>
 
       {mostrarPrimeiraLeitura && (
-        <div className="gap-y-4 grid absolute left-0 p-5 w-[90%] md:w-[60%] lg:w-[50%]">
+        <div className="gap-y-4 grid left-0 p-5 w-[90%] md:w-[60%] lg:w-[50%]">
           <p className="text-xl font-semibold leading-loose">Primeira leitura ({leituras.primeiraLeitura[0].referencia})</p>
-          <p className='text-xl font-semibold'> {leituras.primeiraLeitura[0].titulo}</p>
-          <p className="italic border-l-2 border-gray-400 pl-3 text-lg" >{leituras.primeiraLeitura[0].texto}</p>
+          <p className='text-xl font-semibold pb-5'> {leituras.primeiraLeitura[0].titulo}</p>
+            <div className="border-l-2 border-gray-500 pl-7">
+              <p className="italic font-serif text-gray-700 leading-relaxed text-justify">
+                    {leituras.primeiraLeitura[0].texto}
+              </p>
+          </div>
+ 
           <p className='text-xl mt-10 '>-Palavra do Senhor</p>
           <p className='text-xl font-semibold'> -Graças a Deus</p>
         </div>
       )}
       {mostrarSalmo && (
-        <div className="absolute left-0 mt-2 p-5  w-[90%] md:w-[60%] lg:w-[50%]">
+        <div className="left-0 mt-2 p-5  w-[90%] md:w-[60%] lg:w-[50%]">
           <h2 className="text-xl font-semibold mb-5">Responsório {leituras.salmo[0].referencia}</h2>
           <p className="text-xl font-semibold mb-5">Refrão: {leituras.salmo[0].refrao}</p>
-          <p className="italic border-l-2 border-gray-300 pl-3 text-lg">{leituras.salmo[0].texto}</p>
+          <p className="italic border-l-2 text-gray-700 border-gray-500 pl-7 md:text-lg leading-relaxed">
+            {leituras.salmo[0].texto}
+          </p>
         </div>
       )}
       {mostrarSegundaLeitura && (
-        <div className="absolute left-0 mt-2 p-5 w-[90%] md:w-[60%] lg:w-[50%]">
+        <div className="left-0 mt-2 p-5 w-[90%] md:w-[60%] lg:w-[50%]">
           <p className="text-xl font-bold">Segunda leitura ({leituras.segundaLeitura[0].referencia})</p>
           <p className="text-xl font-bold">{leituras.segundaLeitura[0].titulo}</p>
-          <p className="text-lg italic">{leituras.segundaLeitura[0].texto}</p>
+          <p className="text-lg italic leading-relaxed">{leituras.segundaLeitura[0].texto}</p>
           <p className='text-xl mt-10 '>-Palavra do Senhor</p>
           <p className='text-xl font-semibold'> -Graças a Deus</p>
         </div>
       )}
       {mostrarEvangelho && (
-        <div className="absolute left-0 mt-2 p-5 w-[90%] md:w-[60%] lg:w-[50%]">
+        <div className="left-0 mt-2 p-5 w-[90%] md:w-[60%] lg:w-[50%]">
           <p className="text-xl font-semibold mb-5">Evangelho {leituras.evangelho[0].referencia}</p>
           <h2 className="text-xl font-semibold mb-5">{leituras.evangelho[0].titulo}</h2>
-          <p className="italic border-l-2 border-gray-300 pl-3 text-lg mb-5">{leituras.evangelho[0].texto}</p>
+          <p className="italic border-l-2 pl-7 border-gray-500 text-gray-700 md:text-lg mb-5 leading-relaxed">{leituras.evangelho[0].texto}</p>
           <p className='text-xl'>- Palavra da Salvação</p>
           <p className='font-semibold text-xl'>- Glória a vós, Senhor</p>   
         </div>
