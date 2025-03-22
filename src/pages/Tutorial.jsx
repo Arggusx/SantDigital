@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import tercoTutor from '../assets/Img/terco-tutor.png';
 import { Link, useLocation } from 'react-router-dom';
 
 const Tutorial = () => {
@@ -19,7 +18,7 @@ const Tutorial = () => {
                 <li className='pl-7 ml-2 mt-4 md:text-lg  text-gray-800 italic'><strong>Contas Maiores: </strong> São as "bolinhas" maiores do Terço, onde normalmente rezaremos o Pai Nosso</li>
                 <li className='pl-7 ml-2 mt-4 md:text-lg  text-gray-800 italic'><strong>Contas Menores: </strong> São as "bolinhas" menores, onde rezaremos Ave Maria</li>
                 <li className='pl-7 ml-2 mt-4 md:text-lg  text-gray-800 italic'><strong>Medalha: </strong> Está no centro do Terço, onde rezaremos a oração Salve Rainha</li>
-                    <img className='m-auto w-auto h-screen my-10' src={tercoTutor} alt="" /> 
+                    <img className='m-auto w-auto h-screen my-10' src="/img2/terco-tutor.png" alt="" /> 
                     {/* BUG: márgem !!  flex flex-col items-center justify-center h-screen w-130*/}
 
                 <div className='mt-30 md:ml-5'>

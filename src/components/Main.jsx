@@ -1,4 +1,4 @@
-import imgTerco1 from '../assets/Img/img-terco.jpg';
+
 import React from 'react'
 
 const Main = () => {
@@ -16,7 +16,7 @@ const Main = () => {
                 funcionalidades para enriquecer ainda mais sua experiência de oração e espiritualidade.
                 <hr className="text-yellow-400 border-2 mt-5 w-full rounded" />  
             </p>
-            <img src={imgTerco1} alt='' className='mb-5 mt-4 w-100 h-auto rounded-lg shadow-md' />
+            <img src="img2/img-terco.jpg" alt='' className='mb-5 mt-4 w-100 h-auto rounded-lg shadow-md' />
             <hr className="text-yellow-400 border-2 my-7 w-full rounded" />           
         </div>   
     </div>
