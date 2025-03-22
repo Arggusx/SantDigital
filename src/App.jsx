@@ -5,12 +5,13 @@ import Misterio from './pages/Misterios';
 import Leituras from './pages/Leituras';
 import Tutorial from './pages/Tutorial';
 import Oracoes from './pages/Oracoes';
+import Footer from './components/Footer';
 
 function App() {
 
   return (
     <Router>
-      <Header /> 
+      <Header/> 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home/misterio" element={<Misterio />} />
@@ -18,6 +19,7 @@ function App() {
         <Route path="/home/tutorial" element={<Tutorial />} />
         <Route path="/home/oracoes" element={<Oracoes />} />
       </Routes>
+      <Footer/>
     </Router>
   )
 }

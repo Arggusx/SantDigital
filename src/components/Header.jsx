@@ -28,10 +28,11 @@ const Header = () => {
   }, [menuOpen]);
 
   return (
-    <div className="w-full bg-yellow-100 shadow-md z-50">
-      <nav className="flex flex-row font-bold justify-between items-center p-6 w-full mx-auto">
+    <>
+    <div className="fixed w-full shadow-md bg-gradient-to-t from-yellow-100 to-yellow-200">
+      <nav className="flex flex-row font-bold justify-between items-center py-4 pl-4 mx-auto">
         {/* Título */}
-        <Link id="title" to="/"  className="text-xl">Digital Sanctum</Link>
+        <Link id="title" to="/"  className="text-sm">Digital Sanctum</Link>
 
         {/* Botão de menu (mobile) */}
         <button 
@@ -64,26 +65,27 @@ const Header = () => {
         </ul>
       </div>
     </div>
+    </>
   );
 };
 
 const menuItems = () => (
   <>
-    <li id='menuNav' className="flex items-center gap-x-2">
+    <li id='menuNav' className="flex items-center">
       <Link 
           id='title-nav1' 
           onClick={() => setMenuOpen(false)} 
           to="/home/misterio" 
-          className="text-xl border-2 border-amber-500 bg-stone-100 rounded-3xl px-4 py-1">
+          className="text-sm border-2 border-amber-500 bg-stone-100 rounded-3xl px-4 py-1 transition-transform duration-200 hover:scale-105">
         Mistérios
       </Link>
     </li>
     <li className='hidden md:block'>|</li>
 
-    <li id='menuNav' className="flex items-center gap-x-2">
+    <li id='menuNav' className="flex items-center">
       <Link
             id='title-nav2'
-            className="text-xl border-2 border-amber-500 bg-stone-100 rounded-3xl px-4 py-1"
+            className="text-sm border-2 border-amber-500 bg-stone-100 rounded-3xl px-4 py-1 transition-transform duration-200 hover:scale-105"
             onClick={() => setMenuOpen(false)} 
             to="/home/leituras">
         Leituras
@@ -91,10 +93,10 @@ const menuItems = () => (
     </li>
     <li className='hidden md:block'>|</li>
 
-    <li id='menuNav' className="flex items-center gap-x-2">
+    <li id='menuNav' className="flex items-center">
       <Link 
           id='title-nav3'
-          className="text-xl border-2 border-amber-500 bg-stone-100 rounded-3xl px-4 py-1" 
+          className="text-sm border-2 border-amber-500 bg-stone-100 rounded-3xl px-4 py-1 transition-transform duration-200 hover:scale-105" 
           to="/home/tutorial" 
           onClick={() => setMenuOpen(false)}>
         Terço
@@ -102,10 +104,10 @@ const menuItems = () => (
     </li>
     <li className='hidden md:block'>|</li>
 
-    <li id='menuNav' className="flex items-center gap-x-2 lg:mr-20 mr-5">
+    <li id='menuNav' className="flex items-center lg:pr-20 pr-5">
       <Link 
           id='title-nav4'
-          className="text-xl border-2 border-amber-500 bg-stone-100 rounded-3xl px-4 py-1" 
+          className="text-sm border-2 border-amber-500 bg-stone-100 rounded-3xl px-4 py-1 transition-transform duration-200 hover:scale-105" 
           to="/home/oracoes" 
           onClick={() => setMenuOpen(false)}>
         Orações
