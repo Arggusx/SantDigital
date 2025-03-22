@@ -3,7 +3,6 @@ import iconWhats from '../assets/img/whatsapp-icon.png'
 import iconInsta from '../assets/img/instagram-icon.png'
 import iconX from '../assets/img/x-icon.png'
 import iconGit from '../assets/img/github-icon.png'
-import iconFB from '../assets/img/feedback-icon.png'
 import { useState } from "react";
 
 const Footer = () => {
