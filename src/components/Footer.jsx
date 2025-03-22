@@ -1,7 +1,3 @@
-import iconWhats from '../assets/img/whatsapp-icon.png';
-import iconInsta from '../assets/img/instagram-icon.png';
-import iconX from '../assets/img/x-icon.png';
-import iconGit from '../assets/img/github-icon.png';
 import { useState } from "react";
 
 const Footer = () => {
@@ -13,19 +9,19 @@ const Footer = () => {
             className="flex flex-col gap-y-2 pb-4 items-center pt-5 bg-gradient-to-b via-white to-yellow-300 from-yellow-200">
                 <div className='flex gap-5'>
                     <a href="">
-                        <img src="/public/img2/facebook-icon.png" alt="Facebook" rel="noopener noreferrer" target='_blank' className="w-5 h-5 hover:cursor-pointer transition-transform duration-200 hover:scale-110"/>
+                        <img src="/img2/facebook-icon.png" alt="Facebook" className="w-5 h-5 hover:cursor-pointer transition-transform duration-200 hover:scale-110"/>
                     </a>
                     <a href="https://wa.me/5582996125491" rel="noopener noreferrer" target='_blank'>
-                        <img src={iconWhats} alt="WhatsApp" className="w-6 h-6 hover:cursor-pointer transition-transform duration-200 hover:scale-110"/>
+                        <img src="img2/whatsapp-icon.png" alt="WhatsApp" className="w-6 h-6 hover:cursor-pointer transition-transform duration-200 hover:scale-110"/>
                     </a>
                     <a href="https://www.instagram.com/douglas_uzu" rel="noopener noreferrer" target='_blank'>
-                        <img src={iconInsta} alt="Instagram" className="w-5 h-5 hover:cursor-pointer transition-transform duration-200 hover:scale-110"/>
+                        <img src="img2/instagram-icon.png" alt="Instagram" className="w-5 h-5 hover:cursor-pointer transition-transform duration-200 hover:scale-110"/>
                     </a>
                     <a href="https://github.com/Arggusx" rel="noopener noreferrer" target='_blank'>
-                        <img src={iconGit} alt="GitHub" className="w-5 h-5 hover:cursor-pointer transition-transform duration-200 hover:scale-110"/>
+                        <img src="img2/github-icon.png" alt="GitHub" className="w-5 h-5 hover:cursor-pointer transition-transform duration-200 hover:scale-110"/>
                     </a>
                     <a href="">
-                        <img src={iconX} alt="X" rel="noopener noreferrer" target='_blank' className="w-5 h-5 hover:cursor-pointer transition-transform duration-200 hover:scale-110"/>
+                        <img src="img2/x-icon.png" alt="X" rel="noopener noreferrer" target='_blank' className="w-5 h-5 hover:cursor-pointer transition-transform duration-200 hover:scale-110"/>
                     </a>    
                 </div> 
 
