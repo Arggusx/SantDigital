@@ -9,69 +9,52 @@ const Footer = () => {
     const [showForm, setShowForm] = useState(false);
     return (
         <>
-        <footer 
-            style={{ boxShadow: "0px -5px 10px rgba(0,0,0,0.3)" }} 
-            className="flex flex-col gap-y-2 pb-4 items-center pt-5 bg-gradient-to-b via-white to-yellow-300 from-yellow-200">
-                <div className='flex gap-5'>
-                    <a href="">
-                        <img src={faceIcon} alt="Facebook" className="w-5 h-5 hover:cursor-pointer transition-transform duration-200 hover:scale-110"/>
-                    </a>
-                    <a href="https://wa.me/5582996125491" rel="noopener noreferrer" target='_blank'>
-                        <img src={whatsIcon} alt="WhatsApp" className="w-6 h-6 hover:cursor-pointer transition-transform duration-200 hover:scale-110"/>
-                    </a>
-                    <a href="https://www.instagram.com/douglas_uzu" rel="noopener noreferrer" target='_blank'>
-                        <img src={instaIcon} alt="Instagram" className="w-5 h-5 hover:cursor-pointer transition-transform duration-200 hover:scale-110"/>
-                    </a>
-                    <a href="https://github.com/Arggusx" rel="noopener noreferrer" target='_blank'>
-                        <img src={gitIcon} alt="GitHub" className="w-5 h-5 hover:cursor-pointer transition-transform duration-200 hover:scale-110"/>
-                    </a>
-                    <a href="">
-                        <img src={xIcon} alt="X" rel="noopener noreferrer" target='_blank' className="w-5 h-5 hover:cursor-pointer transition-transform duration-200 hover:scale-110"/>
-                    </a>    
-                </div> 
-
-                <div className="text-sm text-blue-900 font-semibold">
-                    © 2025 Digital Sanctum - Douglas/Arggus
-                </div>
-
-                <button 
-                  className="fixed md:bottom-25 md:right-35 bottom-27 right-4 hover:cursor-pointer bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-lg hover:bg-blue-600 transition-all"
-                  onClick={() => setShowForm(true)}
-                >
-                    <span>💬</span>
-                    <span className='hidden md:inline'>Enviar Feedback</span>
-                </button>
-
-        {/* Modal do Formulário */}
-        {showForm && (
-            <div style={{ background: "rgba(0, 0, 0, 0.7)" }} className="fixed inset-0 bg-gray-500 flex justify-center items-center">
-                <div className="bg-white p-5 rounded-lg shadow-md md:w-90 w-70 h-[60%]">
-                    <h2 className="text-lg font-semibold mb-3">Enviar Feedback</h2>
-                    <h1 className='p-3 mb-4 bg-gray-200 rounded-2xl'>Escreva abaixo sua sugestão do que precisa ser modificado ou do que pode ser melhorado.</h1>
-                    <form action="https://formspree.io/f/mqapqejd" method="POST">
-                        <textarea 
-                            name="message" 
-                            className="w-full p-2 border rounded" 
-                            placeholder="Digite seu feedback..." 
-                            required 
-                        >       
-                        </textarea>
-                        <button 
-                          type="submit" 
-                          className="mt-3 bg-blue-500 text-white px-4 py-2 rounded hover:cursor-pointer hover:bg-blue-600 w-full"
-                        >
-                          Enviar
-                        </button>
-                    </form>
-                    <button 
-                        className="mt-2 text-red-500 w-full hover:cursor-pointer text-center" 
-                        onClick={() => setShowForm(false)}
-                    >
-                        Cancelar
-                    </button>
-                </div>
+        <footer
+          className="flex flex-col gap-y-2 items-center pt-6 pb-6 mt-8 bg-gradient-to-b from-yellow-200 via-white to-yellow-300 shadow-[0_-4px_12px_rgba(0,0,0,0.15)]"
+        >
+            <div className="flex gap-6 flex-wrap justify-center">
+                <a href="">
+                <img
+                    src={faceIcon}
+                    alt="Facebook"
+                    className="w-6 h-6 hover:cursor-pointer transition-transform duration-200 hover:scale-125"
+                />
+                </a>
+                <a href="https://wa.me/5582996125491" rel="noopener noreferrer" target="_blank">
+                <img
+                    src={whatsIcon}
+                    alt="WhatsApp"
+                    className="w-6 h-6 hover:cursor-pointer transition-transform duration-200 hover:scale-125"
+                />
+                </a>
+                <a href="https://www.instagram.com/douglas_uzu" rel="noopener noreferrer" target="_blank">
+                <img
+                    src={instaIcon}
+                    alt="Instagram"
+                    className="w-6 h-6 hover:cursor-pointer transition-transform duration-200 hover:scale-125"
+                />
+                </a>
+                <a href="https://github.com/Arggusx" rel="noopener noreferrer" target="_blank">
+                <img
+                    src={gitIcon}
+                    alt="GitHub"
+                    className="w-6 h-6 hover:cursor-pointer transition-transform duration-200 hover:scale-125"
+                />
+                </a>
+                <a href="" rel="noopener noreferrer" target="_blank">
+                <img
+                    src={xIcon}
+                    alt="X"
+                    className="w-6 h-6 hover:cursor-pointer transition-transform duration-200 hover:scale-125"
+                />
+                </a>
             </div>
-        )}
+
+            <div className="w-24 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+
+            <div className="text-sm md:text-base text-blue-800 font-semibold hover:text-blue-600 transition-colors duration-200">
+                © 2025 Digital Sanctum - Douglas/Arggus
+            </div>
         </footer>
         </>
     )    
