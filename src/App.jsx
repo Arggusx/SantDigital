@@ -1,6 +1,7 @@
 import Header from './components/Header'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
+import Feedback from './components/Feedback';
 import Misterio from './pages/Misterios';
 import Leituras from './pages/Leituras';
 import Tutorial from './pages/Tutorial';
@@ -19,6 +20,7 @@ function App() {
         <Route path="/home/tutorial" element={<Tutorial />} />
         <Route path="/home/oracoes" element={<Oracoes />} />
       </Routes>
+      <Feedback/>
       <Footer/>
     </Router>
   )

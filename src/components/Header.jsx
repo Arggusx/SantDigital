@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import iconHeader from '/img2/christianity.png';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -29,89 +30,102 @@ const Header = () => {
 
   return (
     <>
-    <div className="fixed w-full shadow-md bg-gradient-to-t from-yellow-100 to-yellow-200">
-      <nav className="flex flex-row font-bold justify-between items-center py-4 pl-4 mx-auto">
-        {/* Título */}
-        <Link id="title" to="/"  className="text-sm">Digital Sanctum</Link>
+  <div className="fixed w-full z-50 bg-gradient-to-t from-yellow-50 to-yellow-200 shadow-lg">
+    <nav className="flex flex-row font-bold justify-between items-center px-6 py-4 mx-auto max-w-7xl">
 
-        {/* Botão de menu (mobile) */}
-        <button 
-          className="md:hidden p-2 rounded focus:outline-none" 
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? <X size={28} /> : <Menu className='hover:cursor-pointer' size={28} />}
-        </button>
-
-        {/* Menu (desktop) */}
-        <ul className="hidden md:flex items-center gap-x-6">
-          {menuItems()}
-        </ul>
-      </nav>
-
-      {/* Menu lateral (mobile) */}
-      <div 
-        className={`hover:cursor-pointer fixed top-0 right-0 h-full bg-yellow-100 shadow-lg transition-transform duration-300 ease-in-out md:hidden 
-        ${menuOpen ? "translate-x-0 w-auto max-w-sm" : "translate-x-full w-40 overflow-hidden"}`}
-        ref={menuRef}
+      <Link
+        id="title"
+        to="/"
+        className="text-base md:text-lg font-serif text-gray-800 flex items-center gap-2 hover:text-gray-600 transition-colors duration-200"
       >
-        {/* Botão de fechar dentro do menu */}
-        <button className="absolute top-4 left-4" onClick={() => setMenuOpen(false)}>
-          <X className='hover:cursor-pointer' size={24} />
-        </button>
+        <img className='w-15 h-15 opacity-50 border-2 rounded-full p-1' src={iconHeader} alt="" />
+        
+        Digital Sanctum
+      </Link>
 
-        {/* Itens do menu */}
-        <ul className=" flex flex-col gap-y-4 mt-12 p-4">
-          {menuItems()}
-        </ul>
-      </div>
+      {/* Botão de menu (mobile) */}
+      <button
+        className="md:hidden p-2 rounded-full hover:bg-yellow-300 focus:outline-none transition-colors duration-200"
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        {menuOpen ? <X size={28} /> : <Menu className="hover:cursor-pointer" size={28} />}
+      </button>
+
+      {/* Menu (desktop) */}
+      <ul className="hidden md:flex items-center gap-x-8">
+        {menuItems()}
+      </ul>
+    </nav>
+
+    {/* Menu lateral (mobile) */}
+    <div
+      className={`fixed top-0 right-0 h-full bg-yellow-100 shadow-xl transition-transform duration-300 ease-in-out md:hidden ${
+        menuOpen ? "translate-x-0 w-64" : "translate-x-full w-0 overflow-hidden"
+      }`}
+      ref={menuRef}
+    >
+      {/* Botão de fechar */}
+      <button
+        className="absolute top-4 left-4 p-1 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors duration-200"
+        onClick={() => setMenuOpen(false)}
+      >
+        <X className="hover:cursor-pointer" size={24} />
+      </button>
+
+      {/* Itens do menu */}
+      <ul className="flex flex-col gap-y-6 mt-16 p-6">
+        {menuItems()}
+      </ul>
     </div>
-    </>
+  </div>
+</>
   );
 };
 
 const menuItems = () => (
   <>
-    <li id='menuNav' className="flex items-center">
-      <Link 
-          id='title-nav1' 
-          onClick={() => setMenuOpen(false)} 
-          to="/home/misterio" 
-          className="text-sm border-2 border-amber-500 bg-stone-100 rounded-3xl px-4 py-1 transition-transform duration-200 hover:scale-105">
+    <li id="menuNav" className="flex items-center">
+      <Link
+        id="title-nav1"
+        onClick={() => setMenuOpen(false)}
+        to="/home/misterio"
+        className="text-sm md:text-base border-2 border-amber-600 bg-stone-50 rounded-xl px-4 py-1 text-gray-800 hover:bg-amber-100 hover:shadow-md transition-all duration-200"
+      >
         Mistérios
       </Link>
     </li>
-    <li className='hidden md:block'>|</li>
 
-    <li id='menuNav' className="flex items-center">
+    <li id="menuNav" className="flex items-center">
       <Link
-            id='title-nav2'
-            className="text-sm border-2 border-amber-500 bg-stone-100 rounded-3xl px-4 py-1 transition-transform duration-200 hover:scale-105"
-            onClick={() => setMenuOpen(false)} 
-            to="/home/leituras">
+        id="title-nav2"
+        onClick={() => setMenuOpen(false)}
+        to="/home/leituras"
+        className="text-sm md:text-base border-2 border-amber-600 bg-stone-50 rounded-xl px-4 py-1 text-gray-800 hover:bg-amber-100 hover:shadow-md transition-all duration-200"
+      >
         Leituras
-      </Link> 
+      </Link>
     </li>
-    <li className='hidden md:block'>|</li>
 
-    <li id='menuNav' className="flex items-center">
-      <Link 
-          id='title-nav3'
-          className="text-sm border-2 border-amber-500 bg-stone-100 rounded-3xl px-4 py-1 transition-transform duration-200 hover:scale-105" 
-          to="/home/tutorial" 
-          onClick={() => setMenuOpen(false)}>
+    <li id="menuNav" className="flex items-center">
+      <Link
+        id="title-nav3"
+        onClick={() => setMenuOpen(false)}
+        to="/home/tutorial"
+        className="text-sm md:text-base border-2 border-amber-600 bg-stone-50 rounded-xl px-4 py-1 text-gray-800 hover:bg-amber-100 hover:shadow-md transition-all duration-200"
+      >
         Terço
       </Link>
     </li>
-    <li className='hidden md:block'>|</li>
 
-    <li id='menuNav' className="flex items-center lg:pr-20 pr-5">
-      <Link 
-          id='title-nav4'
-          className="text-sm border-2 border-amber-500 bg-stone-100 rounded-3xl px-4 py-1 transition-transform duration-200 hover:scale-105" 
-          to="/home/oracoes" 
-          onClick={() => setMenuOpen(false)}>
+    <li id="menuNav" className="flex items-center pr-5 md:pr-0">
+      <Link
+        id="title-nav4"
+        onClick={() => setMenuOpen(false)}
+        to="/home/oracoes"
+        className="text-sm md:text-base border-2 border-amber-600 bg-stone-50 rounded-xl px-4 py-1 text-gray-800 hover:bg-amber-100 hover:shadow-md transition-all duration-200"
+      >
         Orações
-        </Link>
+      </Link>
     </li>
   </>
 );
