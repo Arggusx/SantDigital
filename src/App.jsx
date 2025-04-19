@@ -9,7 +9,6 @@ import Oracoes from './pages/Oracoes';
 import Footer from './components/Footer';
 
 function App() {
-
   return (
     <Router>
       <Header/> 
