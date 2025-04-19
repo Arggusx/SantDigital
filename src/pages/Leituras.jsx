@@ -70,7 +70,6 @@ const Leituras = () => {
     return textoFormatado;
   };
 
-  // Aplica as cores litúrgicas
   function getTextColor(cor) {
     const colors = {
       Verde: "text-green-500",
@@ -87,23 +86,44 @@ const Leituras = () => {
       Verde: "bg-green-400",
       Branco: "bg-white-400",
       Vermelho: "bg-red-400",
-      Roxo: "bg-purple-400"
+      Roxo: "bg-purple-400",
+      Rosa: "bg-pink-400"
     };
   
     return colors[cor] || "bg-gray-300 text-gray-500";
   }
   function getHoverBgColor(cor) {
     const colors = {
-      Verde: "bg-green-300",
-      Branco: "bg-white-300",
-      Vermelho: "bg-red-300",
-      Roxo: "bg-purple-800"
+      Verde: "hover:bg-green-300 hover:text-white",
+      Branco: "hover:bg-gray-200 hover:text-gray-500",
+      Vermelho: "hover:bg-red-300 hover:text-white",
+      Roxo: "hover:bg-purple-300 hover:text-white",
+      Rosa: "hover:bg-pink-300 hover:text-white"
     };
   
-    return colors[cor] || "bg-gray-300 text-gray-500";
+    return colors[cor] || "hover:bg-gray-300 text-black";
+  }
+
+  function getBgWrites(cor) {
+    const colors = {
+      Verde: "bg-green-200",
+      Branco: "bg-gray-100",
+      Vermelho: "bg-red-200",
+      Roxo: "bg-purple-200",
+      Rosa: "bg-pink-200"
+    };
+  
+    return colors[cor] || "bg-gray-100";
+  }
+
+  function getTextColor(cor) {
+    const colors = {
+      Branco: "text-gray-600",
+    };
+  
+    return colors[cor] || "text-gray-500";
   }
     
-
   return (
 
     // Botões
@@ -134,9 +154,7 @@ const Leituras = () => {
         {/* Primeira Leitura */}
         {leituras.primeiraLeitura.length > 0 && (
           <button
-            className={`${getBgColor(cor)} text-white text-xl md:text-base font-semibold px-4 py-2 rounded-l-full shadow-md hover:${getHoverBgColor(
-              cor
-            )} hover:text-white transition-all duration-200`}
+            className={`${getBgColor(cor)} ${getTextColor(cor)} text-xl md:text-base font-semibold px-4 py-2 rounded-l-full shadow-md ${getHoverBgColor(cor)}`}
             onClick={() => {
               setMostrarPrimeiraLeitura(!mostrarPrimeiraLeitura);
               setMostrarSegundaLeitura(false);
@@ -151,9 +169,9 @@ const Leituras = () => {
         {/* Salmo */}
         {leituras.salmo.length > 0 && (
           <button
-            className={`${getBgColor(cor)} text-white text-xl md:text-base font-semibold px-4 py-2 shadow-md hover:${getHoverBgColor(
+            className={`${getBgColor(cor)} ${getTextColor(cor)} text-xl md:text-base font-semibold px-4 py-2 shadow-md ${getHoverBgColor(
               cor
-            )} hover:text-white transition-all duration-200`}
+            )} transition-all duration-200`}
             onClick={() => {
               setMostrarSalmo(!mostrarSalmo);
               setMostrarEvangelho(false);
@@ -168,9 +186,9 @@ const Leituras = () => {
         {/* Segunda Leitura */}
         {leituras.segundaLeitura.length > 0 && (
           <button
-            className={`${getBgColor(cor)} text-white text-xl md:text-base font-semibold px-4 py-2 shadow-md hover:${getHoverBgColor(
+            className={`${getBgColor(cor)} ${getTextColor(cor)} text-xl md:text-base font-semibold px-4 py-2 shadow-md ${getHoverBgColor(
               cor
-            )} hover:text-white transition-all duration-200`}
+            )} transition-all duration-200`}
             onClick={() => {
               setMostrarSegundaLeitura(!mostrarSegundaLeitura);
               setMostrarEvangelho(false);
@@ -185,9 +203,9 @@ const Leituras = () => {
         {/* Evangelho */}
         {leituras.evangelho.length > 0 && (
           <button
-            className={`${getBgColor(cor)} text-white text-xl md:text-base font-semibold px-4 py-2 rounded-r-full shadow-md hover:${getHoverBgColor(
+            className={`${getBgColor(cor)} ${getTextColor(cor)} text-xl md:text-base font-semibold px-4 py-2 rounded-r-full shadow-md ${getHoverBgColor(
               cor
-            )} hover:text-white transition-all duration-200`}
+            )} transition-all duration-200`}
             onClick={() => {
               setMostrarEvangelho(!mostrarEvangelho);
               setMostrarSegundaLeitura(false);
@@ -202,7 +220,7 @@ const Leituras = () => {
 
       {/* Primeira Leitura */}
       {mostrarPrimeiraLeitura && (
-        <div className="gap-y-3 grid w-[90%] md:w-[70%] lg:w-[60%] mx-auto bg-white p-6 rounded-lg shadow-sm">
+        <div className={`${getBgWrites(cor)} gap-y-3 grid w-[90%] md:w-[70%] lg:w-[60%] mx-auto p-6 rounded-lg shadow-sm`}>
           <p className="text-xl md:text-lg font-semibold text-gray-800">
             Primeira Leitura ({leituras.primeiraLeitura[0].referencia})
           </p>
@@ -219,7 +237,7 @@ const Leituras = () => {
 
       {/* Salmo */}
       {mostrarSalmo && (
-        <div className="gap-y-3 grid w-[90%] md:w-[70%] lg:w-[60%] mx-auto bg-white p-6 rounded-lg shadow-sm">
+        <div className={`${getBgWrites(cor)} gap-y-3 grid w-[90%] md:w-[70%] lg:w-[60%] mx-auto p-6 rounded-lg shadow-sm`}>
           <h2 className="text-xl md:text-lg font-semibold text-gray-800">
             Responsório {leituras.salmo[0].referencia}
           </h2>
@@ -234,7 +252,7 @@ const Leituras = () => {
 
       {/* Segunda Leitura */}
       {mostrarSegundaLeitura && (
-        <div className="gap-y-3 grid w-[90%] md:w-[70%] lg:w-[60%] mx-auto bg-white p-6 rounded-lg shadow-sm">
+        <div className={`${getBgWrites(cor)} gap-y-3 grid w-[90%] md:w-[70%] lg:w-[60%] mx-auto p-6 rounded-lg shadow-sm`}>
           <p className="text-xl md:text-lg font-semibold text-gray-800">
             Segunda Leitura ({leituras.segundaLeitura[0].referencia})
           </p>
@@ -251,7 +269,7 @@ const Leituras = () => {
 
       {/* Evangelho */}
       {mostrarEvangelho && (
-        <div className="gap-y-3 grid w-[90%] md:w-[70%] lg:w-[60%] mx-auto bg-white p-6 rounded-lg shadow-sm">
+        <div className={`${getBgWrites(cor)} gap-y-3 grid w-[90%] md:w-[70%] lg:w-[60%] mx-auto p-6 rounded-lg shadow-sm`}>
           <p className="text-xl md:text-lg font-semibold text-gray-800">
             Evangelho ({leituras.evangelho[0].referencia})
           </p>
