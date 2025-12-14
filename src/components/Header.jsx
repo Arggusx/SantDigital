@@ -7,7 +7,7 @@ import iconHeader from '/img2/christianity.png';
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
-  
+
   // Fechar o menu quando clicar fora dele
 
   useEffect(() => {
@@ -30,55 +30,54 @@ const Header = () => {
 
   return (
     <>
-  <div className="fixed w-full z-50 bg-gradient-to-t from-yellow-50 to-yellow-200 shadow-lg">
-    <nav className="flex flex-row font-bold justify-between items-center px-6 py-4 mx-auto max-w-7xl">
+      <div className="fixed w-full z-50 bg-amber-700 text-amber-100">
+        <nav className="flex flex-row font-bold justify-between items-center px-6 py-4 mx-auto max-w-7xl">
 
-      <Link
-        id="title"
-        to="/"
-        className="text-base md:text-lg font-serif text-gray-800 flex items-center gap-2 hover:text-gray-600 transition-colors duration-200"
-      >
-        <img className='w-15 h-15 opacity-50 border-2 rounded-full p-1' src={iconHeader} alt="" />
-        
-        Digital Sanctum
-      </Link>
+          <Link
+            id="title"
+            to="/"
+            className="text-base md:text-lg font-serif text-amber-100 flex items-center gap-2 hover:text-gray-600 transition-colors duration-200"
+          >
+            <img className='w-15 h-15 opacity-50 border-2 rounded-full p-1' src={iconHeader} alt="" />
 
-      {/* Botão de menu (mobile) */}
-      <button
-        className="md:hidden p-2 rounded-full hover:bg-yellow-300 focus:outline-none transition-colors duration-200"
-        onClick={() => setMenuOpen(!menuOpen)}
-      >
-        {menuOpen ? <X size={28} /> : <Menu className="hover:cursor-pointer" size={28} />}
-      </button>
+            Digital Sanctum
+          </Link>
 
-      {/* Menu (desktop) */}
-      <ul className="hidden md:flex items-center gap-x-8">
-        {menuItems()}
-      </ul>
-    </nav>
+          {/* Botão de menu (mobile) */}
+          <button
+            className="md:hidden p-2 rounded-full hover:bg-yellow-300 focus:outline-none transition-colors duration-200"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {menuOpen ? <X size={28} /> : <Menu className="hover:cursor-pointer" size={28} />}
+          </button>
 
-    {/* Menu lateral (mobile) */}
-    <div
-      className={`fixed top-0 right-0 h-full bg-yellow-100 shadow-xl transition-transform duration-300 ease-in-out md:hidden ${
-        menuOpen ? "translate-x-0 w-64" : "translate-x-full w-0 overflow-hidden"
-      }`}
-      ref={menuRef}
-    >
-      {/* Botão de fechar */}
-      <button
-        className="absolute top-4 left-4 p-1 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors duration-200"
-        onClick={() => setMenuOpen(false)}
-      >
-        <X className="hover:cursor-pointer" size={24} />
-      </button>
+          {/* Menu (desktop) */}
+          <ul className="hidden md:flex items-center gap-x-8">
+            {menuItems()}
+          </ul>
+        </nav>
 
-      {/* Itens do menu */}
-      <ul className="flex flex-col gap-y-6 mt-16 p-6">
-        {menuItems()}
-      </ul>
-    </div>
-  </div>
-</>
+        {/* Menu lateral (mobile) */}
+        <div
+          className={`fixed top-0 right-0 h-full bg-yellow-100 shadow-xl transition-transform duration-300 ease-in-out md:hidden ${menuOpen ? "translate-x-0 w-64" : "translate-x-full w-0 overflow-hidden"
+            }`}
+          ref={menuRef}
+        >
+          {/* Botão de fechar */}
+          <button
+            className="absolute top-4 left-4 p-1 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors duration-200"
+            onClick={() => setMenuOpen(false)}
+          >
+            <X className="hover:cursor-pointer" size={24} />
+          </button>
+
+          {/* Itens do menu */}
+          <ul className="flex flex-col gap-y-6 mt-16 p-6">
+            {menuItems()}
+          </ul>
+        </div>
+      </div>
+    </>
   );
 };
 
