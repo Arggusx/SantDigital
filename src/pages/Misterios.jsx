@@ -29,7 +29,7 @@ const Misterios = () => {
             </ol>
           </div>
           <div>
-            <img className='h-100 w-100 rounded-2xl' src="/img2/gozosos.jpg" alt="Misterios Gozosos" />
+            <img className='h-100 w-100 rounded-2xl hidden md:block' src="/img2/gozosos.jpg" alt="Misterios Gozosos" />
           </div>
         </div>
 
@@ -51,7 +51,7 @@ const Misterios = () => {
             </ol>
           </div>
           <div>
-            <img className='h-90 w-90 rounded-2xl' src="/img2/dolorosos.jpg" alt="Misterios Dolorosos" />
+            <img className='h-90 w-90 rounded-2xl hidden md:block' src="/img2/dolorosos.jpg" alt="Misterios Dolorosos" />
           </div>
         </div>
 
@@ -73,7 +73,7 @@ const Misterios = () => {
             </ol>
           </div>
           <div>
-            <img className='h-80 w-75 rounded-2xl' src="\img2\luminosos.png" alt="Misterios Luminosos" />
+            <img className='h-80 w-75 rounded-2xl hidden md:block' src="\img2\luminosos.png" alt="Misterios Luminosos" />
           </div>
         </div>
 
@@ -95,7 +95,7 @@ const Misterios = () => {
             </ol>
           </div>
           <div>
-            <img className='h-100 w-115 rounded-2xl' src="\img2\gloriosos.jpg" alt="Misterios Gloriosos" />
+            <img className='h-100 w-115 rounded-2xl hidden md:block' src="\img2\gloriosos.jpg" alt="Misterios Gloriosos" />
           </div>
         </div>
       </div>
