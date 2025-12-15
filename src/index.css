@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
-@font-face {
+/*@font-face {
     font-family: 'Alex Brush';
     src: url(/fontes/AlexBrush-Regular.ttf);
     font-weight: normal;
     font-style: normal;
-}
+}*/
 
 @font-face {
     font-family: 'Cinta Sehatti';
@@ -14,12 +14,26 @@
     font-style: normal;
 }
 
-#oracoes-title, #tittle-oracao, #menuNav, #evangelho-title, #divisoes-title, #sinal-cruz, #oferecimento, #agr, #sr, #gozosos, #luminosos, #gloriosos, #dolorosos, #gloria, #salve {
+#oracoes-title,
+#tittle-oracao,
+#menuNav,
+#evangelho-title,
+#divisoes-title,
+#sinal-cruz,
+#oferecimento,
+#agr,
+#sr,
+#gozosos,
+#luminosos,
+#gloriosos,
+#dolorosos,
+#gloria,
+#salve {
     font-family: "Merriweather", serif;
 }
 
 #title {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) ;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     font-family: 'Cinta Sehatti';
 }
 

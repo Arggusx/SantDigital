@@ -36,7 +36,7 @@ const Header = () => {
           <Link
             id="title"
             to="/"
-            className="text-base md:text-lg font-serif text-amber-100 flex items-center gap-2 hover:text-gray-600 transition-colors duration-200"
+            className="text-base md:text-lg font-serif text-amber-100 flex items-center gap-2 hover:text-gray-300 transition-colors duration-200"
           >
             <img className='w-15 h-15 opacity-50 border-2 rounded-full p-1' src={iconHeader} alt="" />
 

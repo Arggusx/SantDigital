@@ -10,7 +10,6 @@ const Leituras = () => {
   const [cor, setCor] = useState(false);
 
 
-
   const [leituras, setLeituras] = useState({
     primeiraLeitura: [],
     salmo: [],
@@ -104,6 +103,30 @@ const Leituras = () => {
     return colors[cor] || "hover:bg-gray-300 text-black";
   }
 
+  function getBorder(cor) {
+    const colors = {
+      Verde: "border-green-500",
+      Branco: "border-gray-500",
+      Vermelho: "border-red-500",
+      Roxo: "border-purple-500",
+      Rosa: "border-pink-500"
+    };
+
+    return colors[cor] || "bg-gray-500";
+  }
+
+  function getHoverText(cor) {
+    const colors = {
+      Verde: "hover:text-green-600",
+      Branco: "hover:text-gray-600",
+      Vermelho: "hover:text-red-600",
+      Roxo: "hover:text-purple-600",
+      Rosa: "hover:text-pink-600"
+    };
+
+    return colors[cor] || "bg-gray-500";
+  }
+
   function getBgWrites(cor) {
     const colors = {
       Verde: "bg-green-200",
@@ -119,6 +142,11 @@ const Leituras = () => {
   function getTextColor(cor) {
     const colors = {
       Branco: "text-gray-600",
+      Verde: "text-green-600",
+      Branco: "text-gray-600",
+      Vermelho: "text-red-600",
+      Roxo: "text-purple-600",
+      Rosa: "text-pink-600"
     };
 
     return colors[cor] || "text-gray-500";
@@ -128,89 +156,132 @@ const Leituras = () => {
 
     // Botões
 
-    <div className="pt-22 min-h-screen py-8">
-      <div className="md:w-[80%] mx-auto shadow-md rounded-b-lg overflow-hidden">
+    <main className="pt-22 min-h-screen py-8">
+      <section className=" mb-16">
         {/* Título Principal */}
-        <div
-          id="title2"
-          className="bg-gradient-to-r from-gray-100 to-blue-100 font-serif font-bold text-4xl md:text-3xl text-gray-800 flex flex-col pl-6 md:pl-10 pt-8 pb-6"
-        >
-          {formatarLiturgia(liturgia)}
-          <div className="mt-2">
-            <span className="text-xl md:text-lg">Cor: </span>
-            <span className={`${getTextColor(cor)} text-xl md:text-lg font-bold`}>{cor}</span>
+        <div className='flex mt-15 gap-5 items-center justify-center'>
+          <h1
+            id="title2"
+            className="text-xl md:text-5xl font-cursive text-amber-600  italic"
+          >
+            {formatarLiturgia(liturgia)} -
+          </h1>
+          <div className='mt-2'>
+            <span class={`${getTextColor(cor)} relative group text-3xl cursor-default`}>
+              <i class={`fa-solid fa-cross ${getTextColor(cor)}`}></i>
+              <abbr class="ml-6">
+
+              </abbr>
+              <span class={`${getBgColor(cor)} whitespace-nowrap normal-case absolute bottom-full left-1/2 text-gray-800 -translate-x-1/2 mb-2 hidden group-hover:block text-[15px] px-5 py-1 font-bold rounded-lg`}>
+                Cor Rosa
+              </span>
+            </span>
           </div>
         </div>
 
         {/* Container de Leituras */}
-        <div className="pt-6 pl-5 md:pl-10 pb-10 bg-gray-50 md:bg-transparent">
+        <div className="mt-10 flex flex-col items-center">
           {/* Botões Lado a Lado */}
           <div
             className={clsx(
-              "flex flex-wrap gap-3 md:gap-4 pb-8",
-              mostrarPrimeiraLeitura || mostrarSalmo || mostrarSegundaLeitura || mostrarEvangelho ? "pb-8" : "pb-20"
+              "flex flex-wrap items-center gap-3 md:gap-4 pb-8 text-sm md:text-base",
+              mostrarPrimeiraLeitura || mostrarSalmo || mostrarSegundaLeitura || mostrarEvangelho
+                ? "pb-8"
+                : "pb-20"
             )}
           >
             {/* Primeira Leitura */}
             {leituras.primeiraLeitura.length > 0 && (
-              <button
-                className={`${getBgColor(cor)} ${getTextColor(cor)} text-xl md:text-base font-semibold px-4 py-2 rounded-l-full shadow-md ${getHoverBgColor(cor)}`}
-                onClick={() => {
-                  setMostrarPrimeiraLeitura(!mostrarPrimeiraLeitura);
-                  setMostrarSegundaLeitura(false);
-                  setMostrarEvangelho(false);
-                  setMostrarSalmo(false);
-                }}
-              >
-                1ª Leitura
-              </button>
+              <>
+                <button
+                  className={clsx(
+                    "transition-colors font-medium text-xl",
+                    mostrarPrimeiraLeitura
+                      ? ["font-semibold", getTextColor(cor)]
+                      : ["text-gray-500", getHoverText(cor)]
+                  )}
+                  onClick={() => {
+                    setMostrarPrimeiraLeitura(!mostrarPrimeiraLeitura)
+                    setMostrarSalmo(false)
+                    setMostrarSegundaLeitura(false)
+                    setMostrarEvangelho(false)
+                  }}
+                >
+                  1ª Leitura
+                </button>
+                {(leituras.salmo.length > 0 ||
+                  leituras.segundaLeitura.length > 0 ||
+                  leituras.evangelho.length > 0) && (
+                    <span className="text-gray-300 select-none">|</span>
+                  )}
+              </>
             )}
 
             {/* Salmo */}
             {leituras.salmo.length > 0 && (
-              <button
-                className={`${getBgColor(cor)} ${getTextColor(cor)} text-xl md:text-base font-semibold px-4 py-2 shadow-md ${getHoverBgColor(
-                  cor
-                )} transition-all duration-200`}
-                onClick={() => {
-                  setMostrarSalmo(!mostrarSalmo);
-                  setMostrarEvangelho(false);
-                  setMostrarSegundaLeitura(false);
-                  setMostrarPrimeiraLeitura(false);
-                }}
-              >
-                Salmo
-              </button>
+              <>
+                <button
+                  className={clsx(
+                    "transition-colors font-medium text-xl",
+                    mostrarSalmo
+                      ? ["font-semibold", getTextColor(cor)]
+                      : ["text-gray-500", getHoverText(cor)]
+                  )}
+                  onClick={() => {
+                    setMostrarSalmo(!mostrarSalmo)
+                    setMostrarPrimeiraLeitura(false)
+                    setMostrarSegundaLeitura(false)
+                    setMostrarEvangelho(false)
+                  }}
+                >
+                  Salmo
+                </button>
+                {(leituras.segundaLeitura.length > 0 ||
+                  leituras.evangelho.length > 0) && (
+                    <span className="text-gray-300 select-none">|</span>
+                  )}
+              </>
             )}
 
             {/* Segunda Leitura */}
             {leituras.segundaLeitura.length > 0 && (
-              <button
-                className={`${getBgColor(cor)} ${getTextColor(cor)} text-xl md:text-base font-semibold px-4 py-2 shadow-md ${getHoverBgColor(
-                  cor
-                )} transition-all duration-200`}
-                onClick={() => {
-                  setMostrarSegundaLeitura(!mostrarSegundaLeitura);
-                  setMostrarEvangelho(false);
-                  setMostrarSalmo(false);
-                  setMostrarPrimeiraLeitura(false);
-                }}
-              >
-                2ª Leitura
-              </button>
+              <>
+                <button
+                  className={clsx(
+                    "transition-colors font-medium text-xl",
+                    mostrarSegundaLeitura
+                      ? ["font-semibold", getTextColor(cor)]
+                      : ["text-gray-500", getHoverText(cor)]
+                  )}
+                  onClick={() => {
+                    setMostrarSegundaLeitura(!mostrarSegundaLeitura)
+                    setMostrarPrimeiraLeitura(false)
+                    setMostrarSalmo(false)
+                    setMostrarEvangelho(false)
+                  }}
+                >
+                  2ª Leitura
+                </button>
+                {leituras.evangelho.length > 0 && (
+                  <span className="text-gray-300 select-none">|</span>
+                )}
+              </>
             )}
 
             {/* Evangelho */}
             {leituras.evangelho.length > 0 && (
               <button
-                className={`${getBgColor(cor)} ${getTextColor(cor)} text-xl md:text-base font-semibold px-4 py-2 rounded-r-full shadow-md ${getHoverBgColor(
-                  cor
-                )} transition-all duration-200`}
+                className={clsx(
+                  "transition-colors font-medium text-xl",
+                  mostrarEvangelho
+                    ? ["font-semibold", getTextColor(cor)]
+                    : ["text-gray-500", getHoverText(cor)]
+                )}
                 onClick={() => {
-                  setMostrarEvangelho(!mostrarEvangelho);
-                  setMostrarSegundaLeitura(false);
-                  setMostrarSalmo(false);
-                  setMostrarPrimeiraLeitura(false);
+                  setMostrarEvangelho(!mostrarEvangelho)
+                  setMostrarPrimeiraLeitura(false)
+                  setMostrarSalmo(false)
+                  setMostrarSegundaLeitura(false)
                 }}
               >
                 Evangelho
@@ -220,14 +291,14 @@ const Leituras = () => {
 
           {/* Primeira Leitura */}
           {mostrarPrimeiraLeitura && (
-            <div className={`${getBgWrites(cor)} gap-y-3 grid w-[90%] md:w-[70%] lg:w-[60%] mx-auto p-6 rounded-lg shadow-sm`}>
+            <div className={`${getBgWrites(cor)} border-l-[3px] ${getBorder(cor)} gap-y-3 grid w-[90%] md:w-[70%] lg:w-[60%] mx-auto p-6 rounded-lg shadow-sm`}>
               <p className="text-xl md:text-lg font-semibold text-gray-800">
                 Primeira Leitura ({leituras.primeiraLeitura[0].referencia})
               </p>
               <p className="text-xl md:text-lg font-semibold text-gray-700">
                 {leituras.primeiraLeitura[0].titulo}
               </p>
-              <div className="border-l-4 border-gray-400 pl-5 italic text-gray-600 text-base md:text-sm leading-relaxed">
+              <div className="pl-5 italic text-gray-600 text-base md:text-sm leading-relaxed">
                 {leituras.primeiraLeitura[0].texto}
               </div>
               <p className="text-lg md:text-base text-gray-700 mt-4">- Palavra do Senhor</p>
@@ -237,14 +308,14 @@ const Leituras = () => {
 
           {/* Salmo */}
           {mostrarSalmo && (
-            <div className={`${getBgWrites(cor)} gap-y-3 grid w-[90%] md:w-[70%] lg:w-[60%] mx-auto p-6 rounded-lg shadow-sm`}>
+            <div className={`${getBgWrites(cor)} border-l-[3px] ${getBorder(cor)} gap-y-3 grid w-[90%] md:w-[70%] lg:w-[60%] mx-auto p-6 rounded-lg shadow-sm`}>
               <h2 className="text-xl md:text-lg font-semibold text-gray-800">
                 Responsório {leituras.salmo[0].referencia}
               </h2>
               <p className="text-lg md:text-base font-semibold text-gray-700">
                 Refrão: {leituras.salmo[0].refrao}
               </p>
-              <p className="border-l-4 border-gray-400 pl-5 italic text-gray-600 text-base md:text-sm leading-relaxed">
+              <p className="italic text-gray-600 text-base md:text-sm leading-relaxed">
                 {leituras.salmo[0].texto}
               </p>
             </div>
@@ -252,14 +323,14 @@ const Leituras = () => {
 
           {/* Segunda Leitura */}
           {mostrarSegundaLeitura && (
-            <div className={`${getBgWrites(cor)} gap-y-3 grid w-[90%] md:w-[70%] lg:w-[60%] mx-auto p-6 rounded-lg shadow-sm`}>
+            <div className={`${getBgWrites(cor)} border-l-[3px] ${getBorder(cor)} gap-y-3 grid w-[90%] md:w-[70%] lg:w-[60%] mx-auto p-6 rounded-lg shadow-sm`}>
               <p className="text-xl md:text-lg font-semibold text-gray-800">
                 Segunda Leitura ({leituras.segundaLeitura[0].referencia})
               </p>
               <p className="text-xl md:text-lg font-semibold text-gray-700">
                 {leituras.segundaLeitura[0].titulo}
               </p>
-              <p className="border-l-4 border-gray-400 pl-5 italic text-gray-600 text-base md:text-sm leading-relaxed">
+              <p className="italic text-gray-600 text-base md:text-sm leading-relaxed">
                 {leituras.segundaLeitura[0].texto}
               </p>
               <p className="text-lg md:text-base text-gray-700 mt-4">- Palavra do Senhor</p>
@@ -269,14 +340,14 @@ const Leituras = () => {
 
           {/* Evangelho */}
           {mostrarEvangelho && (
-            <div className={`${getBgWrites(cor)} gap-y-3 grid w-[90%] md:w-[70%] lg:w-[60%] mx-auto p-6 rounded-lg shadow-sm`}>
+            <div className={`${getBgWrites(cor)} border-l-[3px] ${getBorder(cor)} gap-y-3 grid w-[90%] md:w-[70%] lg:w-[60%] mx-auto p-6 rounded-lg shadow-sm`}>
               <p className="text-xl md:text-lg font-semibold text-gray-800">
                 Evangelho ({leituras.evangelho[0].referencia})
               </p>
               <h2 className="text-xl md:text-lg font-semibold text-gray-700">
                 {leituras.evangelho[0].titulo}
               </h2>
-              <p className="border-l-4 border-gray-400 pl-5 italic text-gray-600 text-base md:text-sm leading-relaxed">
+              <p className="italic text-gray-600 text-base md:text-sm leading-relaxed">
                 {leituras.evangelho[0].texto}
               </p>
               <p className="text-lg md:text-base text-gray-700 mt-4">- Palavra da Salvação</p>
@@ -284,8 +355,8 @@ const Leituras = () => {
             </div>
           )}
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 
