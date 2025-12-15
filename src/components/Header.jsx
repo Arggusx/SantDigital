@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import iconHeader from '/img2/christianity.png';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -30,17 +29,19 @@ const Header = () => {
 
   return (
     <>
-      <div className="fixed w-full z-50 bg-amber-700 text-amber-100">
-        <nav className="flex flex-row font-bold justify-between items-center px-6 py-4 mx-auto max-w-7xl">
+      <div className="fixed w-full z-50 bg-amber-100">
+        <nav className="flex flex-row font-bold justify-around py-3 shadow-lg items-center">
 
           <Link
             id="title"
             to="/"
             className="text-base md:text-lg font-serif text-amber-100 flex items-center gap-2 hover:text-gray-300 transition-colors duration-200"
           >
-            <img className='w-15 h-15 opacity-50 border-2 rounded-full p-1' src={iconHeader} alt="" />
+            <div className='flex items-center gap-5'>
+              <img className='md:w-23 md:h-20 w-18 h-15 opacity-50' src="/img2/icon_site.png" alt="" />
 
-            Digital Sanctum
+              <img className='md:w-30 md:h-15 w-20 h-10' src="/img2/name_site.png" alt="" />
+            </div>
           </Link>
 
           {/* Botão de menu (mobile) */}
@@ -88,40 +89,43 @@ const menuItems = () => (
         id="title-nav1"
         onClick={() => setMenuOpen(false)}
         to="/home/misterio"
-        className="text-sm md:text-base border-2 border-amber-600 bg-stone-50 rounded-xl px-4 py-1 text-gray-800 hover:bg-amber-100 hover:shadow-md transition-all duration-200"
+        className="text-sm md:text-xl text-gray-600 hover:text-blue-500 transition-all duration-200"
       >
         Mistérios
       </Link>
     </li>
+    <span className="text-gray-300 select-none hidden md:block">|</span>
 
     <li id="menuNav" className="flex items-center">
       <Link
         id="title-nav2"
         onClick={() => setMenuOpen(false)}
         to="/home/leituras"
-        className="text-sm md:text-base border-2 border-amber-600 bg-stone-50 rounded-xl px-4 py-1 text-gray-800 hover:bg-amber-100 hover:shadow-md transition-all duration-200"
+        className="text-sm md:text-xl text-gray-600 hover:text-blue-500 transition-all duration-200"
       >
         Leituras
       </Link>
     </li>
+    <span className="text-gray-300 select-none hidden md:block">|</span>
 
     <li id="menuNav" className="flex items-center">
       <Link
         id="title-nav3"
         onClick={() => setMenuOpen(false)}
         to="/home/tutorial"
-        className="text-sm md:text-base border-2 border-amber-600 bg-stone-50 rounded-xl px-4 py-1 text-gray-800 hover:bg-amber-100 hover:shadow-md transition-all duration-200"
+        className="text-sm md:text-xl text-gray-600 hover:text-blue-500 transition-all duration-200"
       >
         Terço
       </Link>
     </li>
+    <span className="text-gray-300 select-none hidden md:block">|</span>
 
     <li id="menuNav" className="flex items-center pr-5 md:pr-0">
       <Link
         id="title-nav4"
         onClick={() => setMenuOpen(false)}
         to="/home/oracoes"
-        className="text-sm md:text-base border-2 border-amber-600 bg-stone-50 rounded-xl px-4 py-1 text-gray-800 hover:bg-amber-100 hover:shadow-md transition-all duration-200"
+        className="text-sm md:text-xl text-gray-600 hover:text-blue-500 transition-all duration-200"
       >
         Orações
       </Link>
