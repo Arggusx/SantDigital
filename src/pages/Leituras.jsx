@@ -143,7 +143,6 @@ const Leituras = () => {
     const colors = {
       Branco: "text-gray-600",
       Verde: "text-green-600",
-      Branco: "text-gray-600",
       Vermelho: "text-red-600",
       Roxo: "text-purple-600",
       Rosa: "text-pink-600"
