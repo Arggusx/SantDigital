@@ -108,61 +108,61 @@ const Misterios = () => {
           </div>
         </div>
 
-        {/* Versão Mobile Mistérios Luminosos */}
+        {/* Versão Mobile Mistérios */}
 
         <div className='md:hidden block'>
           <MisteriosCard
-            buttonClass="w-[90%] py-4 flex justify-between bg-background p-4 font-bold text-primary uppercase shadow-md transition-all text-sm text-gray-800 text-xs text-gray-800 border-l-[3px] border-green-300 bg-green-300"
-            contentClass="relative pl-4 py-4 bg-green-100 border-[3px] border-green-300 flex items-center pr-5 w-[90%]"
+            buttonClass="w-[90%] py-4 flex justify-between bg-background p-4 font-bold text-primary uppercase shadow-md transition-all text-gray-800 text-xs text-gray-800 border-green-500 bg-green-300"
+            contentClass="relative pl-4 py-4 bg-green-100 border-[3px] border-green-500 flex items-center pr-5 w-[90%]"
             childrenClass="ml-5 gap-y-4 grid text-left text-sm md:text-base font-sans italic text-gray-700 list-decimal marker:font-bold marker:text-green-600 leading-relaxed md:w-[80%]"
             title="Mistérios Gozosos (segundas e sábados, e nos domingos do Advento)" >
-            <li>No primeiro mistério <strong className="text-green-600">[Gozoso]</strong> contemplemos a Anunciação do Arcanjo São Gabriel à Nossa Senhora.</li>
-            <li>No segundo mistério <strong className="text-green-600">[Gozoso]</strong> contemplemos a Visitação de Nossa Senhora à sua prima Santa Isabel.</li>
-            <li>No terceiro mistério <strong className="text-green-600">[Gozoso]</strong> contemplemos o Nascimento do Menino Jesus em Belém.</li>
-            <li>No quarto mistério <strong className="text-green-600">[Gozoso]</strong> contemplemos a Apresentação do Menino Jesus no templo e a Purificação de Nossa Senhora.</li>
-            <li>No quinto mistério <strong className="text-green-600">[Gozoso]</strong> contemplemos a Perda e o Encontro do Menino Jesus no templo.</li>
+            <li className='font-semibold'>No primeiro mistério <strong className="text-green-600">[Gozoso]</strong> contemplemos a Anunciação do Arcanjo São Gabriel à Nossa Senhora.</li>
+            <li className='font-semibold'>No segundo mistério <strong className="text-green-600">[Gozoso]</strong> contemplemos a Visitação de Nossa Senhora à sua prima Santa Isabel.</li>
+            <li className='font-semibold'>No terceiro mistério <strong className="text-green-600">[Gozoso]</strong> contemplemos o Nascimento do Menino Jesus em Belém.</li>
+            <li className='font-semibold'>No quarto mistério <strong className="text-green-600">[Gozoso]</strong> contemplemos a Apresentação do Menino Jesus no templo e a Purificação de Nossa Senhora.</li>
+            <li className='font-semibold'>No quinto mistério <strong className="text-green-600">[Gozoso]</strong> contemplemos a Perda e o Encontro do Menino Jesus no templo.</li>
           </MisteriosCard>
         </div>
 
         <div className='md:hidden block'>
           <MisteriosCard
-            buttonClass="w-[90%] py-4 flex justify-between bg-background p-4 font-bold text-primary uppercase shadow-md transition-all text-sm text-gray-800 text-xs text-gray-800 border-l-[3px] border-red-300 bg-red-300"
-            contentClass="relative pl-4 py-4 bg-red-100 border-[3px] border-red-300 flex items-center pr-5 w-[90%]"
+            buttonClass="w-[90%] py-4 flex justify-between bg-background p-4 font-bold text-primary uppercase shadow-md transition-all text-gray-800 text-xs text-gray-800 border-red-500 bg-red-300"
+            contentClass="relative pl-4 py-4 bg-red-100 border-[3px] border-red-500 flex items-center pr-5 w-[90%]"
             childrenClass="ml-5 gap-y-4 grid text-left text-sm md:text-base font-sans italic text-gray-700 list-decimal marker:font-bold marker:text-red-600 leading-relaxed md:w-[80%]"
             title="Mistérios Dolorosos (terças, sextas-feiras, e domingos da Quaresma à Páscoa)" >
-            <li>No primeiro mistério <strong className="text-red-600">[Doloroso]</strong> contemplemos a Anunciação do Arcanjo São Gabriel à Nossa Senhora.</li>
-            <li>No segundo mistério <strong className="text-red-600">[Doloroso]</strong> contemplemos a Visitação de Nossa Senhora à sua prima Santa Isabel.</li>
-            <li>No terceiro mistério <strong className="text-red-600">[Doloroso]</strong> contemplemos o Nascimento do Menino Jesus em Belém.</li>
-            <li>No quarto mistério <strong className="text-red-600">[Doloroso]</strong> contemplemos a Apresentação do Menino Jesus no templo e a Purificação de Nossa Senhora.</li>
-            <li>No quinto mistério <strong className="text-red-600">[Doloroso]</strong> contemplemos a Perda e o Encontro do Menino Jesus no templo.</li>
+            <li className='font-semibold'>No primeiro mistério <strong className="text-red-600">[Doloroso]</strong> contemplemos a Anunciação do Arcanjo São Gabriel à Nossa Senhora.</li>
+            <li className='font-semibold'>No segundo mistério <strong className="text-red-600">[Doloroso]</strong> contemplemos a Visitação de Nossa Senhora à sua prima Santa Isabel.</li>
+            <li className='font-semibold'>No terceiro mistério <strong className="text-red-600">[Doloroso]</strong> contemplemos o Nascimento do Menino Jesus em Belém.</li>
+            <li className='font-semibold'>No quarto mistério <strong className="text-red-600">[Doloroso]</strong> contemplemos a Apresentação do Menino Jesus no templo e a Purificação de Nossa Senhora.</li>
+            <li className='font-semibold'>No quinto mistério <strong className="text-red-600">[Doloroso]</strong> contemplemos a Perda e o Encontro do Menino Jesus no templo.</li>
           </MisteriosCard>
         </div>
 
         <div className='md:hidden block'>
           <MisteriosCard
-            buttonClass="w-[90%] py-5 flex justify-between bg-background p-4 font-bold text-primary uppercase shadow-md transition-all text-sm text-gray-800 text-xs text-gray-800 border-l-[3px] border-yellow-200 bg-yellow-200"
-            contentClass="relative pl-4 py-4 bg-yellow-100 border-[3px] border-yellow-200 flex items-center pr-5 w-[90%]"
+            buttonClass="w-[90%] py-5 flex justify-between bg-background p-4 font-bold text-primary uppercase shadow-md transition-all text-xs text-gray-800 text-gray-800 border-yellow-400 bg-yellow-200"
+            contentClass="relative pl-4 py-4 bg-yellow-100 border-[3px] border-yellow-400 flex items-center pr-5 w-[90%]"
             childrenClass="ml-5 gap-y-4 grid text-left text-sm md:text-base font-sans italic text-gray-700 list-decimal marker:font-bold marker:text-yellow-600 leading-relaxed md:w-[80%]"
             title="Mistérios Luminosos (quinta-feira)" >
-            <li>No primeiro mistério <strong className="text-yellow-600">[Luminoso]</strong> contemplemos o Batismo de Jesus no rio Jordão.</li>
-            <li>No segundo mistério <strong className="text-yellow-600">[Luminoso]</strong> contemplemos a Auto-revelação de Jesus nas Bodas de Caná.</li>
-            <li>No terceiro mistério <strong className="text-yellow-600">[Luminoso]</strong> contemplemos o Anúncio do Reino de Deus.</li>
-            <li>No quarto mistério <strong className="text-yellow-600">[Luminoso]</strong> contemplemos a Transfiguração de Jesus.</li>
-            <li>No quinto mistério <strong className="text-yellow-600">[Luminoso]</strong> contemplemos a Instituição da Eucaristia.</li>
+            <li className='font-semibold'>No primeiro mistério <strong className="text-yellow-600">[Luminoso]</strong> contemplemos o Batismo de Jesus no rio Jordão.</li>
+            <li className='font-semibold'>No segundo mistério <strong className="text-yellow-600">[Luminoso]</strong> contemplemos a Auto-revelação de Jesus nas Bodas de Caná.</li>
+            <li className='font-semibold'>No terceiro mistério <strong className="text-yellow-600">[Luminoso]</strong> contemplemos o Anúncio do Reino de Deus.</li>
+            <li className='font-semibold'>No quarto mistério <strong className="text-yellow-600">[Luminoso]</strong> contemplemos a Transfiguração de Jesus.</li>
+            <li className='font-semibold'>No quinto mistério <strong className="text-yellow-600">[Luminoso]</strong> contemplemos a Instituição da Eucaristia.</li>
           </MisteriosCard>
         </div>
 
         <div className='md:hidden block'>
           <MisteriosCard
-            buttonClass="py-5 w-[90%] flex justify-between bg-background p-4 font-bold text-primary uppercase shadow-md text-xs text-gray-800 transition-all border-l-[3px] border-blue-300 bg-blue-300"
-            contentClass="relative pl-4 py-4 bg-blue-100 border-[3px] border-blue-300 flex items-center pr-5 w-[90%]"
+            buttonClass="py-5 w-[90%] flex justify-between bg-background p-4 font-bold text-primary uppercase shadow-md text-xs text-gray-800 transition-all border-blue-500 bg-blue-300"
+            contentClass="relative pl-4 py-4 bg-blue-100 border-[3px] border-blue-500 flex items-center pr-5 w-[90%]"
             childrenClass="ml-5 gap-y-4 grid text-left text-sm md:text-base font-sans italic text-gray-700 list-decimal marker:font-bold marker:text-blue-600 leading-relaxed md:w-[80%]"
             title="Mistérios Gloriosos (quartas-feiras e domingos da Páscoa até o Advento)" >
-            <li>No primeiro mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Anunciação do Arcanjo São Gabriel à Nossa Senhora.</li>
-            <li>No segundo mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Visitação de Nossa Senhora à sua prima Santa Isabel.</li>
-            <li>No terceiro mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos o Nascimento do Menino Jesus em Belém.</li>
-            <li>No quarto mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Apresentação do Menino Jesus no templo e a Purificação de Nossa Senhora.</li>
-            <li>No quinto mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Perda e o Encontro do Menino Jesus no templo.</li>
+            <li className='font-semibold'>No primeiro mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Anunciação do Arcanjo São Gabriel à Nossa Senhora.</li>
+            <li className='font-semibold'>No segundo mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Visitação de Nossa Senhora à sua prima Santa Isabel.</li>
+            <li className='font-semibold'>No terceiro mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos o Nascimento do Menino Jesus em Belém.</li>
+            <li className='font-semibold'>No quarto mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Apresentação do Menino Jesus no templo e a Purificação de Nossa Senhora.</li>
+            <li className='font-semibold'>No quinto mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Perda e o Encontro do Menino Jesus no templo.</li>
           </MisteriosCard>
         </div>
 

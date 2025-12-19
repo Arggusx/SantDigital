@@ -30,12 +30,12 @@ const Header = () => {
   return (
     <>
       <div className="fixed w-full z-50 bg-amber-100">
-        <nav className="flex flex-row font-bold justify-around py-3 shadow-lg items-center">
+        <nav className="flex font-bold justify-around py-3 shadow-lg items-center">
 
           <Link
             id="title"
             to="/"
-            className="text-base md:text-lg font-serif text-amber-100 flex items-center gap-2 hover:text-gray-300 transition-colors duration-200"
+            className="flex flex-row items-center right-0 hover:cursor-pointer"
           >
             <div className='flex items-center gap-5'>
               <img className='md:w-23 md:h-20 w-18 h-15 opacity-50' src="/img2/icon_site.png" alt="" />
