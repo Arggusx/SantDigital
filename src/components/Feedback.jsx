@@ -8,8 +8,10 @@ const Feedback = () => {
           className="hover:cursor-pointer  bg-sky-500 text-white md:mr-0 mr-5 text-sm font-semibold px-4 py-2 rounded-full shadow-lg hover:bg-blue-600 transition-all"
           onClick={() => setShowForm(true)}
         >
-          <span>💬</span>
-          <span className='hidden md:inline'>Enviar Feedback</span>
+          <div className="flex gap-2 items-center">
+            <span className="fa-solid fa-comment"></span>
+            <span id="feedback" className='hidden md:inline bebas-neue-regular'>Enviar Feedback</span>
+          </div>
         </button>
       </div>
 

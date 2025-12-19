@@ -10,11 +10,11 @@ export default function MisteriosCard({
 }) {
     const [open, setOpen] = useState(false);
     return (
-        <div className="mt-4 text-center flex flex-col items-center">
+        <div className="text-center flex flex-col items-center">
             {/* BOTÃO */}
             <button
                 onClick={() => setOpen(!open)}
-                className={`${open ? "rounded-t-lg" : "rounded-lg"} ${buttonClass}`}
+                className={`${open ? "rounded-t-lg border-l-[3px] border-t-[3px] border-r-[3px]" : "rounded-lg border-l-[3px] "} ${buttonClass}`}
             >
                 <span className="text-md md:text-xl font-serif text-left font-bold ">{title}</span>
 
