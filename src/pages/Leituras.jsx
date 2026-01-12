@@ -156,23 +156,22 @@ const Leituras = () => {
     // Botões
 
     <main className="pt-22 min-h-screen py-8">
-      <section className=" mb-16">
+      <section className="">
         {/* Título Principal */}
-        <div className='flex mt-15 gap-5 items-center justify-center'>
+        <div className='mt-15 md:gap-5 flex flex-col items-center justify-center mx-auto'>
           <h1
             id="title2"
-            className="text-xl md:text-5xl font-cursive text-amber-600  italic"
+            className="text-2xl md:text-4xl font-cursive text-amber-600  italic text-center"
           >
-            {formatarLiturgia(liturgia)} -
+            {formatarLiturgia(liturgia)}
           </h1>
-          <div className='mt-2'>
-            <span class={`${getTextColor(cor)} relative group text-3xl cursor-default`}>
-              <i class={`fa-solid fa-cross ${getTextColor(cor)}`}></i>
-              <abbr class="ml-6">
+          <div className='mt-2 justify-center flex'>
+            <span class="relative group">
+              <abbr class={`fa-solid fa-cross text-3xl ${getTextColor(cor)}`}>
 
               </abbr>
               <span class={`${getBgColor(cor)} whitespace-nowrap normal-case absolute bottom-full left-1/2 text-gray-800 -translate-x-1/2 mb-2 hidden group-hover:block text-[15px] px-5 py-1 font-bold rounded-lg`}>
-                Cor Rosa
+                Cor {cor}
               </span>
             </span>
           </div>
