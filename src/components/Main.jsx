@@ -7,7 +7,7 @@ const Main = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('https://daily-prayer-api.vercel.app/api/daily-prayer')
+    fetch(import.meta.env.REACT_APP_API_ORACAO)
       .then(response => response.json())
       .then(data => {
         setPrayerOfTheDay(data)

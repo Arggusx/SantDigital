@@ -9,10 +9,10 @@ const Footer = () => {
             >
                 <div className="flex gap-6 flex-wrap justify-center">
                     <a href="https://wa.me/5582996125491" rel="noopener noreferrer" target="_blank">
-                        <i class="text-2xl fa-brands fa-whatsapp hover:cursor-pointer transition-transform duration-200 hover:scale-125 text-gray-600 font-semibold"></i>
+                        <i className="text-2xl fa-brands fa-whatsapp hover:cursor-pointer transition-transform duration-200 hover:scale-125 text-gray-600 font-semibold"></i>
                     </a>
                     <a href="https://www.instagram.com/douglas_uzu" rel="noopener noreferrer" target="_blank">
-                        <i class="text-2xl fa-brands fa-instagram hover:cursor-pointer transition-transform duration-200 hover:scale-125 text-gray-600 font-semibold"></i>
+                        <i className="text-2xl fa-brands fa-instagram hover:cursor-pointer transition-transform duration-200 hover:scale-125 text-gray-600 font-semibold"></i>
                     </a>
                     <a href="https://github.com/Arggusx" rel="noopener noreferrer" target="_blank">
                         <i className="text-2xl fa-brands fa-github hover:cursor-pointer transition-transform duration-200 hover:scale-125 text-gray-600 font-semibold"></i>
