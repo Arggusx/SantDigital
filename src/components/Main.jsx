@@ -7,7 +7,7 @@ const Main = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch(import.meta.env.REACT_APP_API_ORACAO)
+    fetch(`${import.meta.env.VITE_API_ORACAO}/api/daily-prayer`)
       .then(response => response.json())
       .then(data => {
         setPrayerOfTheDay(data)
@@ -31,7 +31,7 @@ const Main = () => {
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=EB+Garamond:wght@400;500;700&display=swap');
       </style>
-      <body className="bg-amber-50 font-serif">
+      <div className="bg-amber-50 font-serif">
         <custom-navbar></custom-navbar>
 
         <main className="max-w-4xl mx-auto px-4 py-8 md:py-16">
@@ -62,13 +62,13 @@ const Main = () => {
 
           <section className="bg-white bg-opacity-70 p-8 border-3 border-gray-200 rounded-lg shadow-sm mb-16">
             <h2 className="text-2xl md:text-3xl text-amber-800 mb-6 text-center">Oração do Dia</h2>
-            <blockquote className="text-amber-900 italic md:text-lg text-md leading-relaxed mb-6">
+            <blockquote className="text-amber-900 md:text-lg text-md leading-relaxed mb-6">
               {prayerOfTheDay.text}
             </blockquote>
             <p className="text-amber-700 text-right md:text-lg text-md">- {prayerOfTheDay.ref}</p>
           </section>
         </main>
-      </body>
+      </div>
 
     </>
   )
