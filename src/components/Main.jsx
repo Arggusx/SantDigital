@@ -7,9 +7,10 @@ const Main = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_ORACAO}/api/daily-prayer`)
+    fetch(`${import.meta.env.VITE_API_ORACAO}/api/daily`)
       .then(response => response.json())
       .then(data => {
+        console.log("Dados recebidos:", data)
         setPrayerOfTheDay(data)
         setLoading(false)
       })
@@ -25,6 +26,16 @@ const Main = () => {
   if (!prayerOfTheDay) {
     return <div className='text-red-500'>Erro ao carregar a oração do dia.</div>
   }
+
+  if (!prayerOfTheDay) return null;
+
+  const verseText =
+    prayerOfTheDay.verse.translatedText ||
+    prayerOfTheDay.verse.originalText;
+
+  const prayerText =
+    prayerOfTheDay.prayer.textTranslate ||
+    prayerOfTheDay.prayer.textOriginal;
 
   return (
     <>
@@ -60,12 +71,17 @@ const Main = () => {
             </div>
           </section>
 
+          <section>
+            <h2>Verso do dia</h2>
+            <blockquote>{verseText}</blockquote>
+          </section>
+
           <section className="bg-white bg-opacity-70 p-8 border-3 border-gray-200 rounded-lg shadow-sm mb-16">
-            <h2 className="text-2xl md:text-3xl text-amber-800 mb-6 text-center">Oração do Dia</h2>
+            <h2 className="text-2xl md:text-3xl text-amber-800 mb-6 text-center">Reflexão diária</h2>
             <blockquote className="text-amber-900 md:text-lg text-md leading-relaxed mb-6">
-              {prayerOfTheDay.text}
+              {prayerText}
             </blockquote>
-            <p className="text-amber-700 text-right md:text-lg text-md">- {prayerOfTheDay.ref}</p>
+            <p className="text-amber-700 text-right md:text-lg text-md">- {prayerOfTheDay.prayer.ref}</p>
           </section>
         </main>
       </div>
