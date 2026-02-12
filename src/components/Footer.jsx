@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <>
             <footer
-                className="flex flex-col gap-y-2 items-center border-t-2 border-t-gray-300 pt-6 pb-6 mt-8 bg-amber-100"
+                className="flex flex-col gap-y-2 items-center border-t-2 border-t-gray-300 pt-6 pb-6 mt-8 bg-amber-100 bottom-0"
             >
                 <div className="flex gap-6 flex-wrap justify-center">
                     <a href="https://wa.me/5582996125491" rel="noopener noreferrer" target="_blank">
