@@ -1,6 +1,7 @@
 
 import React from 'react'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 
 const Main = () => {
   const [prayerOfTheDay, setPrayerOfTheDay] = useState(null)
@@ -23,7 +24,7 @@ const Main = () => {
   }, [])
 
   if (loading) {
-    return <div className='text-green-300'>Carregando...</div>
+    return <div className=" flex flex-col text-green-500 text-3xl justify-center items-center h-screen gap-15">Carregando... <img className='w-[10%] h-[17%] rounded-2xl' src="\img2\papa-leao.gif" alt="" /></div>
   }
   if (!prayerOfTheDay) {
     return <div className='text-red-500'>Erro ao carregar a oração do dia.</div>
@@ -32,15 +33,16 @@ const Main = () => {
   if (!prayerOfTheDay) return null;
 
   const verseText =
-    prayerOfTheDay.verse.translatedText ||
+    // prayerOfTheDay.verse.translatedText ||
     prayerOfTheDay.verse.originalText;
 
   const prayerText =
-    prayerOfTheDay.prayer.textTranslate ||
+    // prayerOfTheDay.prayer.textTranslate ||
     prayerOfTheDay.prayer.textOriginal;
 
   return (
     <>
+      <script src='https://tenor.com/pt-BR/view/memes-meme-memes2022funny-gif-26457759'></script>
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=EB+Garamond:wght@400;500;700&display=swap');
       </style>
@@ -64,7 +66,8 @@ const Main = () => {
               <p className="md:text-lg text-md text-amber-900 mb-8 leading-relaxed">
                 Comece sua jornada espiritual hoje mesmo, com orientações simples e conteúdo que nutre a alma.
               </p>
-              <a href="#" className="inline-block bg-amber-700 md:text-lg text-md hover:bg-amber-800 text-white font-medium py-3 px-8 rounded-full transition duration-300 shadow-md hover:shadow-lg">
+              <a href="/home/tutorial" className="inline-block bg-amber-700 md:text-lg text-md hover:bg-amber-800 text-white font-medium py-3 px-8 rounded-full transition duration-300 shadow-md hover:shadow-lg">
+
                 Começar a rezar o terço
               </a>
             </div>
@@ -73,18 +76,25 @@ const Main = () => {
             </div>
           </section>
 
-          <section>
-            <h2>Verso do dia</h2>
-            <blockquote>{verseText}</blockquote>
-          </section>
+          <div className='bg-bible bg-[rgba(0, 0, 0, 0.5)]'>
+            <section className='abso p-8 border-3 bg-transparent border-gray-200 rounded-lg shadow-sm'>
+              <div className='backdrop-blur-xl p-5 rounded-xl'>
+                <h2 className="text-2xl md:text-3xl text-verse  mb-6 text-center backdrop-blur-xl">Verso do dia</h2>
+                <div className='md:text-xl text-verse text-md leading-relaxed mb-6'>{verseText}</div>
+              </div>
+            </section>
+            <div className='bg-amber-50 py-10'></div>
 
-          <section className="bg-white bg-opacity-70 p-8 border-3 border-gray-200 rounded-lg shadow-sm mb-16">
-            <h2 className="text-2xl md:text-3xl text-amber-800 mb-6 text-center">Reflexão diária</h2>
-            <blockquote className="text-amber-900 md:text-lg text-md leading-relaxed mb-6">
-              {prayerText}
-            </blockquote>
-            <p className="text-amber-700 text-right md:text-lg text-md">- {prayerOfTheDay.prayer.ref}</p>
-          </section>
+            <section className="bg-transparent bg-opacity-70 p-10 border-3 border-gray-200 rounded-lg shadow-sm">
+              <div className='backdrop-blur-xl p-5 rounded-xl'>
+                <h2 className="text-2xl md:text-3xl mb-6 text-center text-verse">Reflexão</h2>
+                <blockquote className="text-verse md:text-lg text-md leading-relaxed mb-6">
+                  {prayerText}
+                </blockquote>
+                <p className=" text-right md:text-lg text-md text-verse">- {prayerOfTheDay.prayer.ref}</p>
+              </div>
+            </section>
+          </div>
         </main>
       </div>
 
