@@ -7,6 +7,8 @@ const Main = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    console.log("API URL:", import.meta.env.VITE_API_ORACAO);
+
     fetch(`${import.meta.env.VITE_API_ORACAO}/api/daily`)
       .then(response => response.json())
       .then(data => {
