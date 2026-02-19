@@ -37,7 +37,7 @@ const Main = () => {
   //   prayerOfTheDay.verse.originalText;
 
   const prayerText =
-    // prayerOfTheDay.prayer.textTranslate ||
+    prayerOfTheDay.prayer.textTranslate ||
     prayerOfTheDay.prayer.textOriginal;
 
   return (
