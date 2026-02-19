@@ -32,9 +32,9 @@ const Main = () => {
 
   if (!prayerOfTheDay) return null;
 
-  const verseText =
-    // prayerOfTheDay.verse.translatedText ||
-    prayerOfTheDay.verse.originalText;
+  // const verseText =
+  //   // prayerOfTheDay.verse.translatedText ||
+  //   prayerOfTheDay.verse.originalText;
 
   const prayerText =
     // prayerOfTheDay.prayer.textTranslate ||
@@ -76,14 +76,14 @@ const Main = () => {
             </div>
           </section>
 
-          <div className='bg-bible bg-[rgba(0, 0, 0, 0.5)]'>
-            <section className='abso p-8 border-3 bg-transparent border-gray-200 rounded-lg shadow-sm'>
+          <div className='bg-bible'>
+            {/* <section className='abso p-8 border-3 bg-transparent border-gray-200 rounded-lg shadow-sm'>
               <div className='backdrop-blur-xl p-5 rounded-xl'>
                 <h2 className="text-2xl md:text-3xl text-verse  mb-6 text-center backdrop-blur-xl">Verso do dia</h2>
                 <div className='md:text-xl text-verse text-md leading-relaxed mb-6'>{verseText}</div>
               </div>
             </section>
-            <div className='bg-amber-50 py-10'></div>
+            <div className='bg-amber-50 py-10'></div> */}
 
             <section className="bg-transparent bg-opacity-70 p-10 border-3 border-gray-200 rounded-lg shadow-sm">
               <div className='backdrop-blur-xl p-5 rounded-xl'>

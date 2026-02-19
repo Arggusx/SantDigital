@@ -16,11 +16,12 @@
 }
 
 .bg-bible {
-    background-image: url('/img2/bible.jpg');
+    background-image: linear-gradient(rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.3)), url('/img2/bible.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
 }
 
 .text-verse {
