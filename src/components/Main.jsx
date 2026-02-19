@@ -36,9 +36,9 @@ const Main = () => {
   //   // prayerOfTheDay.verse.translatedText ||
   //   prayerOfTheDay.verse.originalText;
 
-  const prayerText =
-    // prayerOfTheDay.prayer.textTranslate ||
-    prayerOfTheDay.prayer.textOriginal;
+  // const prayerText =
+  //   // prayerOfTheDay.prayer.textTranslate ||
+  //   prayerOfTheDay.prayer.textOriginal;
 
   return (
     <>
@@ -89,7 +89,7 @@ const Main = () => {
               <div className='backdrop-blur-xl p-5 rounded-xl'>
                 <h2 className="text-2xl md:text-3xl mb-6 text-center text-verse">Reflexão</h2>
                 <blockquote className="text-verse md:text-lg text-md leading-relaxed mb-6">
-                  {prayerText}
+                  {prayerOfTheDay.textOriginal}
                 </blockquote>
                 <p className=" text-right md:text-lg text-md text-verse">- {prayerOfTheDay.prayer.ref}</p>
               </div>
