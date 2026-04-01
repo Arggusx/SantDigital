@@ -4,7 +4,7 @@ import MisteriosCard from '../components/MisteriosCard'
 const Misterios = () => {
   return (
 
-    <main className="max-w-4xl mx-auto py-8 md:py-16">
+    <main className="max-w-4xl mx-auto py-10 md:py-16">
       <section className="text-center mb-16">
         <h1 className="text-4xl md:text-5xl font-cursive text-amber-800 md:mt-15 mt-20 mb-4 italic">Mistérios Diários</h1>
         <p className="text-md md:text-xl text-amber-700 mb-8">Para rezar o terço corretamente, é importante saber qual mistério corresponde ao dia. Cada dia da semana tem um conjunto específico de mistérios que orientam a oração e a meditação. Confira abaixo os mistérios do dia e siga essa tradição para uma experiência mais completa e significativa.</p>
@@ -130,11 +130,11 @@ const Misterios = () => {
             contentClass="relative pl-4 py-4 bg-red-100 border-[3px] border-red-500 flex items-center pr-5 w-[90%]"
             childrenClass="ml-5 gap-y-4 grid text-left text-sm md:text-base font-sans italic text-gray-700 list-decimal marker:font-bold marker:text-red-600 leading-relaxed md:w-[80%]"
             title="Mistérios Dolorosos (terças, sextas-feiras, e domingos da Quaresma à Páscoa)" >
-            <li className='font-semibold'>No primeiro mistério <strong className="text-red-600">[Doloroso]</strong> contemplemos a Anunciação do Arcanjo São Gabriel à Nossa Senhora.</li>
-            <li className='font-semibold'>No segundo mistério <strong className="text-red-600">[Doloroso]</strong> contemplemos a Visitação de Nossa Senhora à sua prima Santa Isabel.</li>
-            <li className='font-semibold'>No terceiro mistério <strong className="text-red-600">[Doloroso]</strong> contemplemos o Nascimento do Menino Jesus em Belém.</li>
-            <li className='font-semibold'>No quarto mistério <strong className="text-red-600">[Doloroso]</strong> contemplemos a Apresentação do Menino Jesus no templo e a Purificação de Nossa Senhora.</li>
-            <li className='font-semibold'>No quinto mistério <strong className="text-red-600">[Doloroso]</strong> contemplemos a Perda e o Encontro do Menino Jesus no templo.</li>
+            <li>No primeiro mistério <strong className="text-red-700">[Doloroso]</strong> contemplemos a Agonia de Cristo Nosso Senhor, quando suou sangue no Horto.</li>
+            <li>No segundo mistério <strong className="text-red-700">[Doloroso]</strong> contemplemos a Flagelação de Jesus Cristo atado à coluna.</li>
+            <li>No terceiro mistério <strong className="text-red-700">[Doloroso]</strong> contemplemos a Coroação de espinhos de Nosso Senhor.</li>
+            <li>No quarto mistério <strong className="text-red-700">[Doloroso]</strong> contemplemos Jesus Cristo carregando a Cruz para o Calvário.</li>
+            <li>No quinto mistério <strong className="text-red-700">[Doloroso]</strong> contemplemos a Crucificação e morte de Nosso Senhor Jesus Cristo.</li>
           </MisteriosCard>
         </div>
 
@@ -158,11 +158,11 @@ const Misterios = () => {
             contentClass="relative pl-4 py-4 bg-blue-100 border-[3px] border-blue-500 flex items-center pr-5 w-[90%]"
             childrenClass="ml-5 gap-y-4 grid text-left text-sm md:text-base font-sans italic text-gray-700 list-decimal marker:font-bold marker:text-blue-600 leading-relaxed md:w-[80%]"
             title="Mistérios Gloriosos (quartas-feiras e domingos da Páscoa até o Advento)" >
-            <li className='font-semibold'>No primeiro mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Anunciação do Arcanjo São Gabriel à Nossa Senhora.</li>
-            <li className='font-semibold'>No segundo mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Visitação de Nossa Senhora à sua prima Santa Isabel.</li>
-            <li className='font-semibold'>No terceiro mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos o Nascimento do Menino Jesus em Belém.</li>
-            <li className='font-semibold'>No quarto mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Apresentação do Menino Jesus no templo e a Purificação de Nossa Senhora.</li>
-            <li className='font-semibold'>No quinto mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Perda e o Encontro do Menino Jesus no templo.</li>
+            <li>No primeiro mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Ressurreição de Cristo Nosso Senhor.</li>
+            <li>No segundo mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Ascensão de Nosso Senhor ao Céu.</li>
+            <li>No terceiro mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Vinda do Espírito Santo sobre os Apóstolos reunidos com Maria Santíssima no Cenáculo em Jerusalém.</li>
+            <li>No quarto mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Assunção de Nossa Senhora ao Céu.</li>
+            <li>No quinto mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Coroação de Nossa Senhora no Céu como Rainha de todos os anjos e santos.</li>
           </MisteriosCard>
         </div>
 

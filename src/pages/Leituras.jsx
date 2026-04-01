@@ -71,10 +71,10 @@ const Leituras = () => {
 
   function getTextColor(cor) {
     const colors = {
-      Verde: "text-green-500",
+      Verde: "text-green-400",
       Branco: "text-white",
-      Vermelho: "text-red-500",
-      Roxo: "text-purple-500"
+      Vermelho: "text-red-400",
+      Roxo: "text-purple-400"
     };
 
     return colors[cor] || "bg-gray-300 text-gray-500";
@@ -117,11 +117,11 @@ const Leituras = () => {
 
   function getHoverText(cor) {
     const colors = {
-      Verde: "hover:text-green-600",
-      Branco: "hover:text-gray-600",
-      Vermelho: "hover:text-red-600",
-      Roxo: "hover:text-purple-600",
-      Rosa: "hover:text-pink-600"
+      Verde: "hover:text-green-500",
+      Branco: "hover:text-gray-500",
+      Vermelho: "hover:text-red-500",
+      Roxo: "hover:text-purple-500",
+      Rosa: "hover:text-pink-500"
     };
 
     return colors[cor] || "bg-gray-500";
@@ -141,15 +141,39 @@ const Leituras = () => {
 
   function getTextColor(cor) {
     const colors = {
-      Branco: "text-gray-600",
-      Verde: "text-green-600",
-      Vermelho: "text-red-600",
-      Roxo: "text-purple-600",
-      Rosa: "text-pink-600"
+      Branco: "text-gray-500",
+      Verde: "text-green-500",
+      Vermelho: "text-red-500",
+      Roxo: "text-purple-500",
+      Rosa: "text-pink-500"
     };
 
     return colors[cor] || "text-gray-500";
   }
+
+  // Fundo do Card: Cor da liturgia bem clarinha (10% a 20%) com blur
+function getBgGlass(cor) {
+  const colors = {
+    Verde: "bg-green-900/20",
+    Branco: "bg-white/20",
+    Vermelho: "bg-red-900/20",
+    Roxo: "bg-purple-900/20",
+    Rosa: "bg-pink-900/20"
+  };
+  return `${colors[cor] || "bg-white/10"} backdrop-blur-xl`;
+}
+
+// Borda do Card: Um pouco mais visível que o fundo para dar definição
+function getBorderGlass(cor) {
+  const colors = {
+    Verde: "border-green-400/30",
+    Branco: "border-white/40",
+    Vermelho: "border-red-400/30",
+    Roxo: "border-purple-400/30",
+    Rosa: "border-pink-400/30"
+  };
+  return colors[cor] || "border-white/20";
+}
 
   return (
 
@@ -166,11 +190,11 @@ const Leituras = () => {
             {formatarLiturgia(liturgia)}
           </h1>
           <div className='mt-2 justify-center flex'>
-            <span class="relative group">
-              <abbr class={`fa-solid fa-cross text-3xl ${getTextColor(cor)}`}>
+            <span className="relative group">
+              <abbr className={`fa-solid fa-cross text-3xl ${getTextColor(cor)}`}>
 
               </abbr>
-              <span class={`${getBgColor(cor)} whitespace-nowrap normal-case absolute bottom-full left-1/2 text-gray-800 -translate-x-1/2 mb-2 hidden group-hover:block text-[15px] px-5 py-1 font-bold rounded-lg`}>
+              <span className={`${getBgColor(cor)} whitespace-nowrap normal-case absolute bottom-full left-1/2 text-gray-800 -translate-x-1/2 mb-2 hidden group-hover:block text-[15px] px-5 py-1 font-bold rounded-lg`}>
                 Cor {cor}
               </span>
             </span>
@@ -196,7 +220,7 @@ const Leituras = () => {
                     "transition-colors font-medium text-xl",
                     mostrarPrimeiraLeitura
                       ? ["font-semibold", getTextColor(cor)]
-                      : ["text-gray-500", getHoverText(cor)]
+                      : ["text-gray-400", getHoverText(cor),]
                   )}
                   onClick={() => {
                     setMostrarPrimeiraLeitura(!mostrarPrimeiraLeitura)
@@ -223,7 +247,7 @@ const Leituras = () => {
                     "transition-colors font-medium text-xl",
                     mostrarSalmo
                       ? ["font-semibold", getTextColor(cor)]
-                      : ["text-gray-500", getHoverText(cor)]
+                      : ["text-gray-400", getHoverText(cor)]
                   )}
                   onClick={() => {
                     setMostrarSalmo(!mostrarSalmo)
@@ -273,7 +297,7 @@ const Leituras = () => {
                   "transition-colors font-medium text-xl",
                   mostrarEvangelho
                     ? ["font-semibold", getTextColor(cor)]
-                    : ["text-gray-500", getHoverText(cor)]
+                    : ["text-gray-400", getHoverText(cor)]
                 )}
                 onClick={() => {
                   setMostrarEvangelho(!mostrarEvangelho)
@@ -289,7 +313,7 @@ const Leituras = () => {
 
           {/* Primeira Leitura */}
           {mostrarPrimeiraLeitura && (
-            <div className={`${getBgWrites(cor)} border-l-[3px] ${getBorder(cor)} gap-y-3 grid w-[90%] md:w-[70%] lg:w-[60%] mx-auto p-6 rounded-lg shadow-sm`}>
+            <div className={`${getBgGlass(cor)} ${getBorderGlass(cor)} gap-5 grid w-[90%] md:w-[70%] lg:w-[40%] mx-auto p-8 rounded-2xl shadow-2xl transition-all duration-500`}>
               <p className="text-xl md:text-lg font-semibold text-gray-800">
                 Primeira Leitura ({leituras.primeiraLeitura[0].referencia})
               </p>
@@ -306,7 +330,7 @@ const Leituras = () => {
 
           {/* Salmo */}
           {mostrarSalmo && (
-            <div className={`${getBgWrites(cor)} border-l-[3px] ${getBorder(cor)} gap-y-3 grid w-[90%] md:w-[70%] lg:w-[60%] mx-auto p-6 rounded-lg shadow-sm`}>
+            <div className={`${getBgGlass(cor)} ${getBorderGlass(cor)} gap-5 grid w-[90%] md:w-[70%] lg:w-[40%] mx-auto p-8 rounded-2xl shadow-2xl transition-all duration-500`}>
               <h2 className="text-xl md:text-lg font-semibold text-gray-800">
                 Responsório {leituras.salmo[0].referencia}
               </h2>
@@ -321,7 +345,7 @@ const Leituras = () => {
 
           {/* Segunda Leitura */}
           {mostrarSegundaLeitura && (
-            <div className={`${getBgWrites(cor)} border-l-[3px] ${getBorder(cor)} gap-y-3 grid w-[90%] md:w-[70%] lg:w-[60%] mx-auto p-6 rounded-lg shadow-sm`}>
+            <div className={`${getBgGlass(cor)} ${getBorderGlass(cor)} gap-5 grid w-[90%] md:w-[70%] lg:w-[40%] mx-auto p-8 rounded-2xl shadow-2xl transition-all duration-500`}>
               <p className="text-xl md:text-lg font-semibold text-gray-800">
                 Segunda Leitura ({leituras.segundaLeitura[0].referencia})
               </p>
@@ -338,7 +362,7 @@ const Leituras = () => {
 
           {/* Evangelho */}
           {mostrarEvangelho && (
-            <div className={`${getBgWrites(cor)} border-l-[3px] ${getBorder(cor)} gap-y-3 grid w-[90%] md:w-[70%] lg:w-[60%] mx-auto p-6 rounded-lg shadow-sm`}>
+            <div className={`${getBgGlass(cor)} ${getBorderGlass(cor)} gap-5 grid w-[90%] md:w-[70%] lg:w-[40%] mx-auto p-8 rounded-2xl shadow-2xl transition-all duration-500`}>
               <p className="text-xl md:text-lg font-semibold text-gray-800">
                 Evangelho ({leituras.evangelho[0].referencia})
               </p>

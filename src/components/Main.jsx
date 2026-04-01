@@ -55,7 +55,7 @@ const Main = () => {
             <p className="text-md md:text-2xl text-amber-700 mb-8">Um refúgio digital para oração e reflexão espiritual</p>
             <div className="w-24 h-1 bg-amber-300 mx-auto mb-12"></div>
           </section>
-          <section className="grid md:grid-cols-2 gap-12 items-center mb-16">
+          <section className="grid md:grid-cols-2 gap-12 items-center mb-16 bg-[#fef3c6] border-3 border-gray-300 hover:shadow-md shadow-sm backdrop-blur-xl rounded-2xl p-10">
             <div>
               <p className="md:text-lg text-md text-amber-900 mb-6 leading-relaxed">
                 Bem-vindo ao seu santuário digital, onde a paz encontra a tecnologia. Aqui, oferecemos um espaço tranquilo para fortalecer sua vida espiritual através da oração e meditação.
@@ -85,14 +85,12 @@ const Main = () => {
             </section>
             <div className='bg-amber-50 py-10'></div> */}
 
-            <section className="bg-transparent bg-opacity-70 p-10 border-3 border-gray-200 rounded-lg shadow-sm">
-              <div className='backdrop-blur-xl p-5 rounded-xl'>
+            <section className="bg-transparent backdrop-blur-xl bg-opacity-70 p-10 border-3 border-gray-300 rounded-xl shadow-sm hover:shadow-md">
                 <h2 className="text-2xl md:text-3xl mb-6 text-center text-verse">Reflexão</h2>
                 <blockquote className="text-verse md:text-lg text-md leading-relaxed mb-6">
                   {prayerOfTheDay.prayer.textOriginal}
                 </blockquote>
                 <p className=" text-right md:text-lg text-md text-verse">- {prayerOfTheDay.prayer.ref}</p>
-              </div>
             </section>
           </div>
         </main>

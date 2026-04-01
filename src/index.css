@@ -16,7 +16,7 @@
 }
 
 .bg-bible {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.3)), url('/img2/bible.jpg');
+    background-image: linear-gradient(rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.8)), url('/img2/bible.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
