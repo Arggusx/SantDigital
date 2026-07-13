@@ -1,107 +1,213 @@
-import React, { useEffect } from 'react';
-import { useLocation } from "react-router-dom";
+import { useMemo, useState } from 'react';
+import { ChevronDown, Search } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-const Oracoes = () => {
-  const location = useLocation();
+/* ── Step-by-step rosary guide ── */
+const steps = [
+  [
+    'Sinal da Cruz e Oferecimento',
+    'Faça o Sinal da Cruz: "Em nome do Pai, do Filho e do Espírito Santo. Amém."\n\nOferecimento: "Divino Jesus, nós Vos oferecemos este terço que vamos rezar, meditando nos mistérios da nossa Redenção. Concedei-nos, por intercessão da Virgem Maria, Mãe de Deus e nossa Mãe, as virtudes que nos são necessárias para bem rezá-lo e a graça de ganharmos as indulgências desta santa devoção."',
+  ],
+  [
+    'Creio (Símbolo dos Apóstolos)',
+    'Segurando o crucifixo, reze: "Creio em Deus Pai Todo-Poderoso, Criador do céu e da terra; e em Jesus Cristo, seu único Filho, nosso Senhor; que foi concebido pelo poder do Espírito Santo; nasceu da Virgem Maria; padeceu sob Pôncio Pilatos, foi crucificado, morto e sepultado; desceu à mansão dos mortos; ressuscitou ao terceiro dia; subiu aos Céus, está sentado à direita de Deus Pai Todo-Poderoso, de onde há de vir a julgar os vivos e os mortos. Creio no Espírito Santo, na Santa Igreja Católica, na comunhão dos Santos, na remissão dos pecados, na ressurreição da carne, na vida eterna. Amém."',
+  ],
+  [
+    'Pai Nosso (na conta grande)',
+    'Na primeira conta grande, reze: "Pai nosso, que estais nos céus, santificado seja o vosso nome; venha a nós o vosso Reino; seja feita a vossa vontade, assim na terra como no céu. O pão nosso de cada dia nos dai hoje; perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido; e não nos deixeis cair em tentação, mas livrai-nos do mal. Amém."',
+  ],
+  [
+    'Três Ave-Marias',
+    'Nas três contas pequenas seguintes, reze uma Ave-Maria em cada, pedindo o aumento das virtudes teologais:\n1. Pelo aumento da Fé.\n2. Pelo aumento da Esperança.\n3. Pelo aumento da Caridade.\n\n"Ave Maria, cheia de graça, o Senhor é convosco. Bendita sois vós entre as mulheres, e bendito é o fruto do vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém."',
+  ],
+  [
+    'Glória ao Pai',
+    'Reze: "Glória ao Pai, e ao Filho, e ao Espírito Santo. Como era no princípio, agora e sempre, e por todos os séculos dos séculos. Amém."',
+  ],
+  [
+    'Anunciação dos Mistérios e as Dezenas',
+    'Para cada um dos 5 mistérios do dia (Gozosos, Dolorosos, Gloriosos ou Luminosos):\n1. Anuncie o mistério (ex: "No primeiro mistério contemplamos...").\n2. Reze 1 Pai Nosso (na conta grande).\n3. Reze 10 Ave-Marias (nas 10 contas pequenas) meditando no mistério.\n4. Reze o Glória ao Pai.\n5. Reze a Jaculatória de Fátima: "Ó meu Jesus, perdoai-nos, livrai-nos do fogo do inferno, levai as almas todas para o Céu e socorrei principalmente as que mais precisarem."',
+  ],
+  [
+    'Salve Rainha (Agradecimento)',
+    'Ao final das 5 dezenas, segurando a medalha central, reze:\n"Salve, Rainha, mãe de misericórdia, vida, doçura e esperança nossa, salve! A vós bradamos, os degredados filhos de Eva. A vós suspiramos, gemendo e chorando neste vale de lágrimas. Eia, pois, advogada nossa, esses vossos olhos misericordiosos a nós volvei, e depois deste desterro, mostrai-nos Jesus, bendito fruto do vosso ventre. Ó clemente, ó piedosa, ó doce sempre Virgem Maria. Rogai por nós, Santa Mãe de Deus, para que sejamos dignos das promessas de Cristo. Amém."',
+  ],
+];
 
-  useEffect(() => {
-    const hash = location.hash;
-    if (hash) {
-      const elemento = document.querySelector(hash);
-      if (elemento) {
-        elemento.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  }, [location]);
+/* ── Expanded traditional prayers ── */
+const prayers = [
+  ['Diárias', 'Pai-Nosso', 'Pai nosso, que estais nos céus, santificado seja o vosso nome; venha a nós o vosso Reino; seja feita a vossa vontade, assim na terra como no céu. O pão nosso de cada dia nos dai hoje; perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido; e não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.'],
+  ['Diárias', 'Glória ao Pai', 'Glória ao Pai, e ao Filho, e ao Espírito Santo. Como era no princípio, agora e sempre, e por todos os séculos dos séculos. Amém.'],
+  ['Diárias', 'Credo (Símbolo dos Apóstolos)', 'Creio em Deus Pai Todo-Poderoso, Criador do céu e da terra; e em Jesus Cristo, seu único Filho, nosso Senhor; que foi concebido pelo poder do Espírito Santo; nasceu da Virgem Maria; padeceu sob Pôncio Pilatos, foi crucificado, morto e sepultado; desceu à mansão dos mortos; ressuscitou ao terceiro dia; subiu aos Céus, está sentado à direita de Deus Pai Todo-Poderoso, de onde há de vir a julgar os vivos e os mortos. Creio no Espírito Santo, na Santa Igreja Católica, na comunhão dos Santos, na remissão dos pecados, na ressurreição da carne, na vida eterna. Amém.'],
+  ['Diárias', 'Ato de Contrição', 'Meu Deus, porque sois infinitamente bom e Vos amo de todo o meu coração, pesa-me de Vos ter ofendido, e com o auxílio da Vossa divina graça, proponho firmemente emendar-me e nunca mais Vos tornar a ofender. Peço e espero o perdão das minhas culpas pela Vossa infinita misericórdia. Amém.'],
+  ['Marianas', 'Ave-Maria', 'Ave Maria, cheia de graça, o Senhor é convosco. Bendita sois vós entre as mulheres, e bendito é o fruto do vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. Amém.'],
+  ['Marianas', 'Salve-Rainha', 'Salve, Rainha, mãe de misericórdia, vida, doçura e esperança nossa, salve! A vós bradamos, os degredados filhos de Eva. A vós suspiramos, gemendo e chorando neste vale de lágrimas. Eia, pois, advogada nossa, esses vossos olhos misericordiosos a nós volvei, e depois deste desterro, mostrai-nos Jesus, bendito fruto do vosso ventre. Ó clemente, ó piedosa, ó doce sempre Virgem Maria. Rogai por nós, Santa Mãe de Deus, para que sejamos dignos das promessas de Cristo. Amém.'],
+  ['Marianas', 'Angelus', 'O Anjo do Senhor anunciou a Maria, e ela concebeu do Espírito Santo. Ave Maria... Eis aqui a escrava do Senhor, faça-se em mim segundo a vossa Palavra. Ave Maria... E o Verbo se fez carne, e habitou entre nós. Ave Maria... Rogai por nós, Santa Mãe de Deus, para que sejamos dignos das promessas de Cristo. Amém.'],
+  ['Marianas', 'Magnificat', 'A minha alma engrandece o Senhor, e o meu espírito se alegrou em Deus, meu Salvador, porque Ele olhou para a humildade de sua serva. De hoje em diante todas as gerações me chamarão bem-aventurada, porque o Todo-Poderoso fez em mim maravilhas. Santo é o seu nome.'],
+  ['Santos', 'Oração ao Espírito Santo', 'Vinde, Espírito Santo, enchei os corações dos vossos fiéis e acendei neles o fogo do vosso amor. Enviai o vosso Espírito e tudo será criado, e renovareis a face da terra.'],
+  ['Santos', 'Oração de São Francisco', 'Senhor, fazei de mim um instrumento da vossa paz. Onde houver ódio, que eu leve o amor. Onde houver ofensa, que eu leve o perdão. Onde houver discórdia, que eu leve a união. Onde houver dúvida, que eu leve a fé. Onde houver erro, que eu leve a verdade. Onde houver desespero, que eu leve a esperança. Onde houver tristeza, que eu leve a alegria. Onde houver trevas, que eu leve a luz.'],
+  ['Santos', 'Oração ao Anjo da Guarda', 'Santo Anjo do Senhor, meu zeloso guardador, se a ti me confiou a piedade divina, sempre me rege, guarda, governa e ilumina. Amém.'],
+  ['Sacramentais', 'Jaculatória de Fátima', 'Ó meu Jesus, perdoai-nos, livrai-nos do fogo do inferno, levai as almas todas para o Céu, e socorrei principalmente as que mais precisarem. Amém.'],
+  ['Sacramentais', 'Consagração ao Imaculado Coração', 'Ó Maria, Mãe de Deus e nossa Mãe, eu me consagro inteiramente ao vosso Imaculado Coração, com tudo o que sou e o que tenho. Acolhei-me sob a vossa maternal proteção. Guardai-me e defendei-me como coisa e propriedade vossa. Amém.'],
+];
 
+/* ── Accordion component ── */
+function Accordion({ title, badge, children, isOpen, onToggle }) {
   return (
-    <div className="min-h-screen py-8">
-      <h1
-        id="title2"
-        className="text-4xl md:text-3xl font-serif font-bold text-gray-800 text-center mb-8 mt-30"
-      >
-        Orações
-      </h1>
-      <div className="w-[90%] md:w-[80%] mx-auto pt-4 pb-20">
-        {/* Conteúdo */}
-        <div className="px-6 md:px-8 space-y-12">
-          {/* Credo */}
-          <div className='bg-white shadow-lg rounded-lg p-5'>
-            <p
-              id="tittle-oracao"
-              className="mt-6 text-xl md:text-lg font-serif font-bold text-gray-800 pb-1"
-            >
-              Credo
-            </p>
-            <p className="w-[90%] md:w-[60%] mt-4 pl-5 text-gray-700 italic text-lg md:text-base leading-relaxed">
-              Creio em Deus Pai, todo-poderoso, criador do Céu e da Terra e em Jesus Cristo, seu único Filho, Nosso Senhor; que foi concebido pelo poder do Espírito Santo; nasceu da Virgem Maria, padeceu sob Pôncio Pilatos, foi crucificado, morto e sepultado; desceu à mansão dos mortos; ressuscitou ao terceiro dia; subiu aos céus, está sentado à direita de Deus Pai todo-poderoso, donde há de vir julgar os vivos e os mortos. Creio no Espírito Santo, na santa Igreja Católica, na comunhão dos santos, na remissão dos pecados, na ressurreição da carne, na vida eterna. <strong>Amém!</strong>
-            </p>
-          </div>
-
-          {/* Pai Nosso */}
-          <div className='bg-white shadow-lg rounded-lg p-5'>
-            <p
-              id="tittle-oracao"
-              className="mt-6 text-xl md:text-lg font-serif font-bold text-gray-800 border-b-2 border-gray-300 pb-1"
-            >
-              Pai Nosso
-            </p>
-            <p className="w-[90%] md:w-[60%] mt-4 text-gray-700 italic text-lg md:text-base leading-relaxed">
-              <strong>Pai nosso</strong>, que estais nos céus, santificado seja o Vosso Nome, venha a nós o Vosso Reino, seja feita a Vossa vontade, assim na terra como no céu.
-            </p>
-            <p className="w-[90%] md:w-[60%] mt-3 text-gray-700 italic text-lg md:text-base leading-relaxed">
-              O pão nosso de cada dia nos dai hoje, perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido, e não nos deixeis cair em tentação, mas livrai-nos do mal. <strong>Amém!</strong>
-            </p>
-          </div>
-
-          {/* Ave Maria */}
-          <div className='bg-white shadow-lg rounded-lg p-5'>
-            <h1
-              id="tittle-oracao"
-              className="mt-6 text-xl md:text-lg font-serif font-bold text-gray-800 border-b-2 border-gray-300 pb-1"
-            >
-              Ave Maria
-            </h1>
-            <p className="w-[90%] md:w-[60%] mt-4 pl-5 text-gray-700 italic text-lg md:text-base leading-relaxed">
-              Ave Maria, cheia de graça, o Senhor é convosco. Bendita sois vós entre as mulheres, e bendito é o fruto do vosso ventre, Jesus.
-            </p>
-            <p className="w-[90%] md:w-[60%] mt-3 text-gray-700 italic text-lg md:text-base leading-relaxed">
-              Santa Maria, Mãe de Deus, rogai por nós, pecadores, agora e na hora de nossa morte. <strong>Amém!</strong>
-            </p>
-          </div>
-
-          {/* Salve Rainha */}
-          <div>
-            <h1
-              id="tittle-oracao"
-              className="mt-6 text-xl md:text-lg font-serif font-bold text-gray-800 border-b-2 border-gray-300 pb-1"
-            >
-              Salve Rainha
-            </h1>
-            <p className="w-[90%] md:w-[60%] mt-4 pl-5 border-l-4 border-gray-400 text-gray-700 italic text-lg md:text-base leading-relaxed">
-              Salve, Rainha, mãe de misericórdia, vida, doçura, esperança nossa, salve! A Vós bradamos, os degredados filhos de Eva. A Vós suspiramos, gemendo e chorando neste vale de lágrimas. Eia, pois, advogada nossa, esses Vossos olhos misericordiosos a nós volvei. E, depois deste desterro, nos mostrai Jesus, bendito fruto do Vosso ventre. Ó clemente, ó piedosa, ó doce Virgem Maria. Rogai por nós, Santa Mãe de Deus, para que sejamos dignos das promessas de Cristo. <strong>Amém!</strong>
-            </p>
-          </div>
-
-          {/* Invocação do Espírito Santo */}
-          <div>
-            <p
-              id="tittle-oracao"
-              className="mt-6 text-xl md:text-lg font-serif font-bold text-gray-800 border-b-2 border-gray-300 pb-1"
-            >
-              Invocação do Espírito Santo
-            </p>
-            <p className="w-[90%] md:w-[60%] mt-4 pl-5 border-l-4 border-gray-400 text-gray-700 italic text-lg md:text-base leading-relaxed">
-              Vinde Espírito Santo, enchei os corações dos vossos fiéis e acendei neles o fogo do vosso amor. Enviai o vosso Espírito e tudo será criado. E renovareis a face da terra.
-            </p>
-            <p className="w-[90%] md:w-[60%] mt-3 pl-5 border-l-4 border-gray-400 text-gray-700 italic text-lg md:text-base leading-relaxed">
-              <strong>Oremos:</strong> Ó Deus, que instruístes os corações dos vossos fiéis com a luz do Espírito Santo, fazei que apreciemos retamente todas as coisas segundo o mesmo Espírito e gozemos sempre da sua consolação. Por Cristo, Senhor Nosso. <strong>Amém</strong>.
-            </p>
-          </div>
+    <div className={`accordion ${isOpen ? 'open' : ''}`}>
+      <button className="accordion-trigger" onClick={onToggle}>
+        <span style={{ display: 'flex', flexDirection: 'column', gap: '0.1rem' }}>
+          {badge && <small className="prayer-badge">{badge}</small>}
+          <span>{title}</span>
+        </span>
+        <ChevronDown size={18} className="accordion-icon" />
+      </button>
+      <div className="accordion-content">
+        <div>
+          <p className="accordion-body" style={{ whiteSpace: 'pre-wrap' }}>{children}</p>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Oracoes
+/* ── Page categories ── */
+const categories = ['Todas', 'Diárias', 'Marianas', 'Santos', 'Sacramentais'];
+
+export default function Oracoes() {
+  const [section, setSection] = useState('terco');
+  const [query, setQuery] = useState('');
+  const [activeCategory, setActiveCategory] = useState('Todas');
+  const [openIdx, setOpenIdx] = useState(null);
+
+  const filtered = useMemo(() => {
+    return prayers.filter(([cat, name, text]) => {
+      const matchesCategory = activeCategory === 'Todas' || cat === activeCategory;
+      const matchesQuery = `${cat} ${name} ${text}`
+        .toLowerCase()
+        .includes(query.toLowerCase());
+      return matchesCategory && matchesQuery;
+    });
+  }, [query, activeCategory]);
+
+  return (
+    <main className="page">
+      <span className="eyebrow">Um caminho de oração</span>
+      <h1 className="section-title">Terço e orações</h1>
+      <p className="lead">
+        Reze passo a passo ou encontre uma oração para o momento presente.
+      </p>
+
+      {/* ── Toggle switch ── */}
+      <div className="subnav" style={{ marginTop: '1.5rem' }}>
+        <button
+          className={section === 'terco' ? 'active' : ''}
+          onClick={() => setSection('terco')}
+        >
+          Como rezar o terço
+        </button>
+        <button
+          className={section === 'oracoes' ? 'active' : ''}
+          onClick={() => setSection('oracoes')}
+        >
+          Orações tradicionais
+        </button>
+      </div>
+
+      {/* ── Content ── */}
+      <div className="prayer-layout">
+        {section === 'terco' ? (
+          <>
+            {/* Step-by-step guide */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              <h2 className="section-title" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.2rem)' }}>
+                O terço, passo a passo
+              </h2>
+              {steps.map(([title, content], i) => (
+                <Accordion
+                  key={title}
+                  title={`${i + 1}. ${title}`}
+                  isOpen={openIdx === `step-${i}`}
+                  onToggle={() => setOpenIdx(openIdx === `step-${i}` ? null : `step-${i}`)}
+                >
+                  {content}
+                </Accordion>
+              ))}
+            </motion.div>
+
+            {/* Visual guide image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            >
+              <img
+                className="terco-guide-img"
+                src="/img2/passo-a-passo-como-rezar-o-terco.png"
+                alt="Guia visual para rezar o terço"
+              />
+            </motion.div>
+          </>
+        ) : (
+          <motion.div
+            style={{ gridColumn: '1 / -1' }}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            {/* Search bar */}
+            <div className="search-wrapper">
+              <Search size={16} className="search-icon" />
+              <input
+                className="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Buscar uma oração..."
+              />
+            </div>
+
+            {/* Category pills */}
+            <div className="faq-categories">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  className={`category ${activeCategory === cat ? 'active' : ''}`}
+                  onClick={() => setActiveCategory(cat)}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+
+            {/* Prayer list */}
+            {filtered.map(([category, name, text], i) => (
+              <Accordion
+                key={name}
+                title={name}
+                badge={category}
+                isOpen={openIdx === `prayer-${i}`}
+                onToggle={() => setOpenIdx(openIdx === `prayer-${i}` ? null : `prayer-${i}`)}
+              >
+                {text}
+              </Accordion>
+            ))}
+
+            {filtered.length === 0 && (
+              <p
+                className="lead"
+                style={{ textAlign: 'center', marginTop: '2rem' }}
+              >
+                Nenhuma oração encontrada.
+              </p>
+            )}
+          </motion.div>
+        )}
+      </div>
+    </main>
+  );
+}

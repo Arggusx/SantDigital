@@ -1,174 +1,113 @@
-import React from 'react'
-import MisteriosCard from '../components/MisteriosCard'
+import { motion } from 'framer-motion';
 
-const Misterios = () => {
+const mysteries = [
+  {
+    name: 'Gozosos',
+    day: 'Segundas e sábados · domingos do Advento',
+    color: '#6F8D64',
+    image: '/img2/gozosos.jpg',
+    items: [
+      'A Anunciação do anjo a Maria.',
+      'A Visitação de Maria a Isabel.',
+      'O nascimento de Jesus em Belém.',
+      'A apresentação de Jesus no Templo.',
+      'O encontro de Jesus entre os doutores.',
+    ],
+  },
+  {
+    name: 'Dolorosos',
+    day: 'Terças e sextas · domingos da Quaresma',
+    color: '#A95041',
+    image: '/img2/dolorosos.jpg',
+    items: [
+      'A agonia de Jesus no Horto.',
+      'A flagelação de Jesus.',
+      'A coroação de espinhos.',
+      'Jesus carrega a cruz.',
+      'A crucificação e morte de Jesus.',
+    ],
+  },
+  {
+    name: 'Luminosos',
+    day: 'Quintas-feiras',
+    color: '#BF8C26',
+    image: '/img2/luminosos.png',
+    items: [
+      'O batismo de Jesus no Jordão.',
+      'As bodas de Caná.',
+      'O anúncio do Reino de Deus.',
+      'A Transfiguração de Jesus.',
+      'A instituição da Eucaristia.',
+    ],
+  },
+  {
+    name: 'Gloriosos',
+    day: 'Quartas e domingos · Tempo Pascal',
+    color: '#6D7899',
+    image: '/img2/gloriosos.jpg',
+    items: [
+      'A Ressurreição de Jesus.',
+      'A Ascensão de Jesus ao Céu.',
+      'A vinda do Espírito Santo.',
+      'A Assunção de Maria.',
+      'A coroação de Maria no Céu.',
+    ],
+  },
+];
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.45,
+      ease: [0.33, 1, 0.68, 1],
+    },
+  }),
+};
+
+export default function Misterios() {
   return (
+    <main className="page">
+      <span className="eyebrow">Santo Terço</span>
+      <h1 className="section-title">Mistérios para cada dia</h1>
+      <p className="lead">
+        Contemple a vida de Cristo sob o olhar de Maria. Cada conjunto de
+        mistérios acompanha um ritmo da semana.
+      </p>
 
-    <main className="max-w-4xl mx-auto py-10 md:py-16">
-      <section className="text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-cursive text-amber-800 md:mt-15 mt-20 mb-4 italic">Mistérios Diários</h1>
-        <p className="text-md md:text-xl text-amber-700 mb-8">Para rezar o terço corretamente, é importante saber qual mistério corresponde ao dia. Cada dia da semana tem um conjunto específico de mistérios que orientam a oração e a meditação. Confira abaixo os mistérios do dia e siga essa tradição para uma experiência mais completa e significativa.</p>
-        <div className="w-24 h-1 bg-amber-300 mx-auto mb-12"></div>
+      <section className="card-grid">
+        {mysteries.map((mystery, i) => (
+          <motion.article
+            className="mystery-card"
+            style={{ '--accent': mystery.color }}
+            key={mystery.name}
+            custom={i}
+            variants={cardVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <div className="mystery-content">
+              <p className="day">{mystery.day}</p>
+              <h2>{mystery.name}</h2>
+              <ol>
+                {mystery.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ol>
+            </div>
+            <div className="mystery-image">
+              <img
+                src={mystery.image}
+                alt={`Mistérios ${mystery.name}`}
+                loading="lazy"
+              />
+            </div>
+          </motion.article>
+        ))}
       </section>
-      <div className="w-full mx-auto flex gap-10 flex-col">
-
-        {/* Mistérios Gozosos */}
-        <div className='hidden md:block'>
-          <div className="relative pl-4 py-4 rounded-md bg-green-200 border-l-[3px] border-green-600 shadow-sm hover:shadow-md transition-shadow flex items-center pr-5">
-            <div>
-              <div
-                id="gozosos"
-                className="text-2xl md:text-xl font-serif font-bold text-green-700"
-              >
-                Mistérios Gozosos (segundas e sábados, e nos domingos do Advento)
-              </div>
-              <ol className="ml-8 mt-4 gap-y-4 grid text-sm md:text-base font-sans italic text-gray-700 list-decimal marker:font-bold marker:text-green-600 leading-relaxed md:w-[80%]">
-                <li>No primeiro mistério <strong className="text-green-600">[Gozoso]</strong> contemplemos a Anunciação do Arcanjo São Gabriel à Nossa Senhora.</li>
-                <li>No segundo mistério <strong className="text-green-600">[Gozoso]</strong> contemplemos a Visitação de Nossa Senhora à sua prima Santa Isabel.</li>
-                <li>No terceiro mistério <strong className="text-green-600">[Gozoso]</strong> contemplemos o Nascimento do Menino Jesus em Belém.</li>
-                <li>No quarto mistério <strong className="text-green-600">[Gozoso]</strong> contemplemos a Apresentação do Menino Jesus no templo e a Purificação de Nossa Senhora.</li>
-                <li>No quinto mistério <strong className="text-green-600">[Gozoso]</strong> contemplemos a Perda e o Encontro do Menino Jesus no templo.</li>
-              </ol>
-            </div>
-            <div>
-              <img className='h-100 w-100 rounded-2xl hidden md:block' src="/img2/gozosos.jpg" alt="Misterios Gozosos" />
-            </div>
-          </div>
-        </div>
-
-        {/* Mistérios Dolorosos */}
-        <div className='hidden md:block'>
-          <div className="relative pl-4 py-4 rounded-md bg-red-100 border-l-[3px] border-red-600 shadow-sm hover:shadow-md transition-shadow flex items-center pr-5">
-            <div>
-              <div
-                id="dolorosos"
-                className="text-2xl md:text-xl font-serif font-bold text-red-800"
-              >
-                Mistérios Dolorosos (terças e sextas-feiras, e domingos da Quaresma até a Páscoa)
-              </div>
-              <ol className="ml-8 mt-4 gap-y-4 grid text-sm md:text-base font-sans italic text-gray-700 list-decimal marker:font-bold marker:text-red-700 leading-relaxed  md:w-[80%]">
-                <li>No primeiro mistério <strong className="text-red-700">[Doloroso]</strong> contemplemos a Agonia de Cristo Nosso Senhor, quando suou sangue no Horto.</li>
-                <li>No segundo mistério <strong className="text-red-700">[Doloroso]</strong> contemplemos a Flagelação de Jesus Cristo atado à coluna.</li>
-                <li>No terceiro mistério <strong className="text-red-700">[Doloroso]</strong> contemplemos a Coroação de espinhos de Nosso Senhor.</li>
-                <li>No quarto mistério <strong className="text-red-700">[Doloroso]</strong> contemplemos Jesus Cristo carregando a Cruz para o Calvário.</li>
-                <li>No quinto mistério <strong className="text-red-700">[Doloroso]</strong> contemplemos a Crucificação e morte de Nosso Senhor Jesus Cristo.</li>
-              </ol>
-            </div>
-            <div>
-              <img className='h-90 w-90 rounded-2xl hidden md:block' src="/img2/dolorosos.jpg" alt="Misterios Dolorosos" />
-            </div>
-          </div>
-        </div>
-
-        {/* Mistérios Luminosos */}
-        <div className='hidden md:block'>
-          <div className="relative pl-4 py-4 rounded-md bg-yellow-100 border-l-[3px] border-yellow-600 shadow-sm hover:shadow-md transition-shadow flex items-center pr-5">
-            <div>
-              <div
-                id="luminosos"
-                className="text-2xl md:text-xl font-serif font-bold text-yellow-700"
-              >
-                Mistérios Luminosos (quinta-feira)
-              </div>
-              <ol className="ml-8 mt-4 gap-y-4 grid text-sm md:text-base font-sans italic text-gray-700 list-decimal marker:font-bold marker:text-yellow-600 leading-relaxed md:w-[80%]">
-                <li>No primeiro mistério <strong className="text-yellow-600">[Luminoso]</strong> contemplemos o Batismo de Jesus no rio Jordão.</li>
-                <li>No segundo mistério <strong className="text-yellow-600">[Luminoso]</strong> contemplemos a Auto-revelação de Jesus nas Bodas de Caná.</li>
-                <li>No terceiro mistério <strong className="text-yellow-600">[Luminoso]</strong> contemplemos o Anúncio do Reino de Deus.</li>
-                <li>No quarto mistério <strong className="text-yellow-600">[Luminoso]</strong> contemplemos a Transfiguração de Jesus.</li>
-                <li>No quinto mistério <strong className="text-yellow-600">[Luminoso]</strong> contemplemos a Instituição da Eucaristia.</li>
-              </ol>
-            </div>
-            <div>
-              <img className='h-80 w-75 rounded-2xl hidden md:block' src="\img2\luminosos.png" alt="Misterios Luminosos" />
-            </div>
-          </div>
-        </div>
-
-        {/* Mistérios Gloriosos */}
-        <div className='hidden md:block'>
-          <div className="relative pl-4 py-4 rounded-md bg-blue-100 border-l-[3px] border-blue-600 shadow-sm hover:shadow-md transition-shadow flex items-center pr-5">
-            <div>
-              <div
-                id="gloriosos"
-                className="text-2xl md:text-xl font-serif font-bold text-blue-600"
-              >
-                Mistérios Gloriosos (quartas-feiras e domingos da Páscoa até o Advento)
-              </div>
-              <ol className="ml-8 mt-4 gap-y-4 grid text-sm md:text-base font-sans italic text-gray-700 list-decimal marker:font-bold marker:text-blue-600 leading-relaxed md:w-[80%]">
-                <li>No primeiro mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Ressurreição de Cristo Nosso Senhor.</li>
-                <li>No segundo mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Ascensão de Nosso Senhor ao Céu.</li>
-                <li>No terceiro mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Vinda do Espírito Santo sobre os Apóstolos reunidos com Maria Santíssima no Cenáculo em Jerusalém.</li>
-                <li>No quarto mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Assunção de Nossa Senhora ao Céu.</li>
-                <li>No quinto mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Coroação de Nossa Senhora no Céu como Rainha de todos os anjos e santos.</li>
-              </ol>
-            </div>
-            <div>
-              <img className='h-100 w-115 rounded-2xl hidden md:block' src="\img2\gloriosos.jpg" alt="Misterios Gloriosos" />
-            </div>
-          </div>
-        </div>
-
-        {/* Versão Mobile Mistérios */}
-
-        <div className='md:hidden block'>
-          <MisteriosCard
-            buttonClass="w-[90%] py-4 flex justify-between bg-background p-4 font-bold text-primary uppercase shadow-md transition-all text-gray-800 text-xs text-gray-800 border-green-500 bg-green-300"
-            contentClass="relative pl-4 py-4 bg-green-100 border-[3px] border-green-500 flex items-center pr-5 w-[90%]"
-            childrenClass="ml-5 gap-y-4 grid text-left text-sm md:text-base font-sans italic text-gray-700 list-decimal marker:font-bold marker:text-green-600 leading-relaxed md:w-[80%]"
-            title="Mistérios Gozosos (segundas e sábados, e nos domingos do Advento)" >
-            <li className='font-semibold'>No primeiro mistério <strong className="text-green-600">[Gozoso]</strong> contemplemos a Anunciação do Arcanjo São Gabriel à Nossa Senhora.</li>
-            <li className='font-semibold'>No segundo mistério <strong className="text-green-600">[Gozoso]</strong> contemplemos a Visitação de Nossa Senhora à sua prima Santa Isabel.</li>
-            <li className='font-semibold'>No terceiro mistério <strong className="text-green-600">[Gozoso]</strong> contemplemos o Nascimento do Menino Jesus em Belém.</li>
-            <li className='font-semibold'>No quarto mistério <strong className="text-green-600">[Gozoso]</strong> contemplemos a Apresentação do Menino Jesus no templo e a Purificação de Nossa Senhora.</li>
-            <li className='font-semibold'>No quinto mistério <strong className="text-green-600">[Gozoso]</strong> contemplemos a Perda e o Encontro do Menino Jesus no templo.</li>
-          </MisteriosCard>
-        </div>
-
-        <div className='md:hidden block'>
-          <MisteriosCard
-            buttonClass="w-[90%] py-4 flex justify-between bg-background p-4 font-bold text-primary uppercase shadow-md transition-all text-gray-800 text-xs text-gray-800 border-red-500 bg-red-300"
-            contentClass="relative pl-4 py-4 bg-red-100 border-[3px] border-red-500 flex items-center pr-5 w-[90%]"
-            childrenClass="ml-5 gap-y-4 grid text-left text-sm md:text-base font-sans italic text-gray-700 list-decimal marker:font-bold marker:text-red-600 leading-relaxed md:w-[80%]"
-            title="Mistérios Dolorosos (terças, sextas-feiras, e domingos da Quaresma à Páscoa)" >
-            <li>No primeiro mistério <strong className="text-red-700">[Doloroso]</strong> contemplemos a Agonia de Cristo Nosso Senhor, quando suou sangue no Horto.</li>
-            <li>No segundo mistério <strong className="text-red-700">[Doloroso]</strong> contemplemos a Flagelação de Jesus Cristo atado à coluna.</li>
-            <li>No terceiro mistério <strong className="text-red-700">[Doloroso]</strong> contemplemos a Coroação de espinhos de Nosso Senhor.</li>
-            <li>No quarto mistério <strong className="text-red-700">[Doloroso]</strong> contemplemos Jesus Cristo carregando a Cruz para o Calvário.</li>
-            <li>No quinto mistério <strong className="text-red-700">[Doloroso]</strong> contemplemos a Crucificação e morte de Nosso Senhor Jesus Cristo.</li>
-          </MisteriosCard>
-        </div>
-
-        <div className='md:hidden block'>
-          <MisteriosCard
-            buttonClass="w-[90%] py-5 flex justify-between bg-background p-4 font-bold text-primary uppercase shadow-md transition-all text-xs text-gray-800 text-gray-800 border-yellow-400 bg-yellow-200"
-            contentClass="relative pl-4 py-4 bg-yellow-100 border-[3px] border-yellow-400 flex items-center pr-5 w-[90%]"
-            childrenClass="ml-5 gap-y-4 grid text-left text-sm md:text-base font-sans italic text-gray-700 list-decimal marker:font-bold marker:text-yellow-600 leading-relaxed md:w-[80%]"
-            title="Mistérios Luminosos (quinta-feira)" >
-            <li className='font-semibold'>No primeiro mistério <strong className="text-yellow-600">[Luminoso]</strong> contemplemos o Batismo de Jesus no rio Jordão.</li>
-            <li className='font-semibold'>No segundo mistério <strong className="text-yellow-600">[Luminoso]</strong> contemplemos a Auto-revelação de Jesus nas Bodas de Caná.</li>
-            <li className='font-semibold'>No terceiro mistério <strong className="text-yellow-600">[Luminoso]</strong> contemplemos o Anúncio do Reino de Deus.</li>
-            <li className='font-semibold'>No quarto mistério <strong className="text-yellow-600">[Luminoso]</strong> contemplemos a Transfiguração de Jesus.</li>
-            <li className='font-semibold'>No quinto mistério <strong className="text-yellow-600">[Luminoso]</strong> contemplemos a Instituição da Eucaristia.</li>
-          </MisteriosCard>
-        </div>
-
-        <div className='md:hidden block'>
-          <MisteriosCard
-            buttonClass="py-5 w-[90%] flex justify-between bg-background p-4 font-bold text-primary uppercase shadow-md text-xs text-gray-800 transition-all border-blue-500 bg-blue-300"
-            contentClass="relative pl-4 py-4 bg-blue-100 border-[3px] border-blue-500 flex items-center pr-5 w-[90%]"
-            childrenClass="ml-5 gap-y-4 grid text-left text-sm md:text-base font-sans italic text-gray-700 list-decimal marker:font-bold marker:text-blue-600 leading-relaxed md:w-[80%]"
-            title="Mistérios Gloriosos (quartas-feiras e domingos da Páscoa até o Advento)" >
-            <li>No primeiro mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Ressurreição de Cristo Nosso Senhor.</li>
-            <li>No segundo mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Ascensão de Nosso Senhor ao Céu.</li>
-            <li>No terceiro mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Vinda do Espírito Santo sobre os Apóstolos reunidos com Maria Santíssima no Cenáculo em Jerusalém.</li>
-            <li>No quarto mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Assunção de Nossa Senhora ao Céu.</li>
-            <li>No quinto mistério <strong className="text-blue-600">[Glorioso]</strong> contemplemos a Coroação de Nossa Senhora no Céu como Rainha de todos os anjos e santos.</li>
-          </MisteriosCard>
-        </div>
-
-      </div>
     </main>
-  )
+  );
 }
-
-export default Misterios

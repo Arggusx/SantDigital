@@ -1,385 +1,253 @@
-import React, { useState, useEffect } from 'react';
-import clsx from 'clsx';
+import { useEffect, useState } from 'react';
+import { Maximize2, X, BookOpen } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const Leituras = () => {
-  const [mostrarPrimeiraLeitura, setMostrarPrimeiraLeitura] = useState(false);
-  const [mostrarSalmo, setMostrarSalmo] = useState(false);
-  const [mostrarSegundaLeitura, setMostrarSegundaLeitura] = useState(false);
-  const [mostrarEvangelho, setMostrarEvangelho] = useState(false);
-  const [liturgia, setLiturgia] = useState("");
-  const [cor, setCor] = useState(false);
-
-
-  const [leituras, setLeituras] = useState({
-    primeiraLeitura: [],
-    salmo: [],
-    segundaLeitura: [],
-    evangelho: [],
-    extras: []
-  });
-
-  const diasSemana = {
-    "2ª feira": "Segunda-feira",
-    "3ª feira": "Terça-feira",
-    "4ª feira": "Quarta-feira",
-    "5ª feira": "Quinta-feira",
-    "6ª feira": "Sexta-feira",
-    "Sábado": "Sábado",
-    "Domingo": "Domingo"
-  };
-
-  // Quebras de linha
-  const inserirQuebrasDeLinha = (texto, numeroDePalavras) => {
-    const palavras = texto.split(' ');
-    let resultado = '';
-
-    for (let i = 0; i < palavras.length; i++) {
-      resultado += palavras[i] + ' ';
-      if ((i + 1) % numeroDePalavras === 0) {
-        resultado += '<br />';
-      }
+/* ── Fallback readings when API is unavailable ── */
+const fallback = {
+  primeiraLeitura: [
+    {
+      referencia: 'Is 55, 6-9',
+      titulo: 'Buscai o Senhor enquanto pode ser achado',
+      texto:
+        'Buscai o Senhor enquanto pode ser achado; invocai-o enquanto está perto. Que o ímpio abandone seu caminho e o homem mau, seus pensamentos; volte ao Senhor, que terá piedade dele.',
+    },
+  ],
+  salmo: [
+    {
+      referencia: 'Sl 62',
+      titulo: 'A minha alma tem sede de Deus',
+      texto:
+        'Sois, ó Senhor, o meu Deus! Desde a aurora ansioso vos busco. A minha alma tem sede de vós.',
+    },
+  ],
+  evangelho: [
+    {
+      referencia: 'Mt 11, 28',
+      titulo: 'Vinde a mim',
+      texto:
+        'Vinde a mim, todos vós que estais cansados e fatigados sob o peso dos vossos fardos, e eu vos darei descanso.',
+    },
+  ],
+  homilia: [
+    {
+      referencia: 'Reflexão Diária',
+      titulo: 'Acolhendo a Palavra',
+      texto: 'Esta é uma reflexão de exemplo para a homilia diária. A verdadeira será carregada em breve.',
     }
-
-    return resultado.trim();
-  };
-
-  // API
-  useEffect(() => {
-    fetch('https://liturgia.up.railway.app/v2/')
-      .then(response => response.json())
-      .then(data => {
-        setLeituras(data.leituras || {});
-        setLiturgia(data.liturgia || "");
-        setCor(data.cor || {});
-      })
-      .catch(error => console.error("Erro ao buscar liturgia:", error));
-  }, []);
-
-  // Formata os dia corretamente
-  const formatarLiturgia = (texto) => {
-    if (!texto) return "";
-
-    let textoFormatado = texto;
-    Object.keys(diasSemana).forEach((chave) => {
-      if (texto.includes(chave)) {
-        textoFormatado = texto.replace(chave, diasSemana[chave]);
-      }
-    });
-
-    return textoFormatado;
-  };
-
-  function getTextColor(cor) {
-    const colors = {
-      Verde: "text-green-400",
-      Branco: "text-white",
-      Vermelho: "text-red-400",
-      Roxo: "text-purple-400"
-    };
-
-    return colors[cor] || "bg-gray-300 text-gray-500";
-  }
-
-  function getBgColor(cor) {
-    const colors = {
-      Verde: "bg-green-400",
-      Branco: "bg-white-400",
-      Vermelho: "bg-red-400",
-      Roxo: "bg-purple-400",
-      Rosa: "bg-pink-400"
-    };
-
-    return colors[cor] || "bg-gray-300 text-gray-500";
-  }
-  function getHoverBgColor(cor) {
-    const colors = {
-      Verde: "hover:bg-green-300 hover:text-white",
-      Branco: "hover:bg-gray-200 hover:text-gray-500",
-      Vermelho: "hover:bg-red-300 hover:text-white",
-      Roxo: "hover:bg-purple-300 hover:text-white",
-      Rosa: "hover:bg-pink-300 hover:text-white"
-    };
-
-    return colors[cor] || "hover:bg-gray-300 text-black";
-  }
-
-  function getBorder(cor) {
-    const colors = {
-      Verde: "border-green-500",
-      Branco: "border-gray-500",
-      Vermelho: "border-red-500",
-      Roxo: "border-purple-500",
-      Rosa: "border-pink-500"
-    };
-
-    return colors[cor] || "bg-gray-500";
-  }
-
-  function getHoverText(cor) {
-    const colors = {
-      Verde: "hover:text-green-500",
-      Branco: "hover:text-gray-500",
-      Vermelho: "hover:text-red-500",
-      Roxo: "hover:text-purple-500",
-      Rosa: "hover:text-pink-500"
-    };
-
-    return colors[cor] || "bg-gray-500";
-  }
-
-  function getBgWrites(cor) {
-    const colors = {
-      Verde: "bg-green-200",
-      Branco: "bg-gray-100",
-      Vermelho: "bg-red-200",
-      Roxo: "bg-purple-200",
-      Rosa: "bg-pink-200"
-    };
-
-    return colors[cor] || "bg-gray-100";
-  }
-
-  function getTextColor(cor) {
-    const colors = {
-      Branco: "text-gray-500",
-      Verde: "text-green-500",
-      Vermelho: "text-red-500",
-      Roxo: "text-purple-500",
-      Rosa: "text-pink-500"
-    };
-
-    return colors[cor] || "text-gray-500";
-  }
-
-  // Fundo do Card: Cor da liturgia bem clarinha (10% a 20%) com blur
-function getBgGlass(cor) {
-  const colors = {
-    Verde: "bg-green-900/20",
-    Branco: "bg-white/20",
-    Vermelho: "bg-red-900/20",
-    Roxo: "bg-purple-900/20",
-    Rosa: "bg-pink-900/20"
-  };
-  return `${colors[cor] || "bg-white/10"} backdrop-blur-xl`;
-}
-
-// Borda do Card: Um pouco mais visível que o fundo para dar definição
-function getBorderGlass(cor) {
-  const colors = {
-    Verde: "border-green-400/30",
-    Branco: "border-white/40",
-    Vermelho: "border-red-400/30",
-    Roxo: "border-purple-400/30",
-    Rosa: "border-pink-400/30"
-  };
-  return colors[cor] || "border-white/20";
-}
-
-  return (
-
-    // Botões
-
-    <main className="pt-22 min-h-screen py-8">
-      <section className="">
-        {/* Título Principal */}
-        <div className='mt-15 md:gap-5 flex flex-col items-center justify-center mx-auto'>
-          <h1
-            id="title2"
-            className="text-2xl md:text-4xl font-cursive text-amber-600  italic text-center"
-          >
-            {formatarLiturgia(liturgia)}
-          </h1>
-          <div className='mt-2 justify-center flex'>
-            <span className="relative group">
-              <abbr className={`fa-solid fa-cross text-3xl ${getTextColor(cor)}`}>
-
-              </abbr>
-              <span className={`${getBgColor(cor)} whitespace-nowrap normal-case absolute bottom-full left-1/2 text-gray-800 -translate-x-1/2 mb-2 hidden group-hover:block text-[15px] px-5 py-1 font-bold rounded-lg`}>
-                Cor {cor}
-              </span>
-            </span>
-          </div>
-        </div>
-
-        {/* Container de Leituras */}
-        <div className="mt-10 flex flex-col items-center">
-          {/* Botões Lado a Lado */}
-          <div
-            className={clsx(
-              "flex flex-wrap items-center gap-3 md:gap-4 pb-8 text-sm md:text-base",
-              mostrarPrimeiraLeitura || mostrarSalmo || mostrarSegundaLeitura || mostrarEvangelho
-                ? "pb-8"
-                : "pb-20"
-            )}
-          >
-            {/* Primeira Leitura */}
-            {leituras.primeiraLeitura.length > 0 && (
-              <>
-                <button
-                  className={clsx(
-                    "transition-colors font-medium text-xl",
-                    mostrarPrimeiraLeitura
-                      ? ["font-semibold", getTextColor(cor)]
-                      : ["text-gray-400", getHoverText(cor),]
-                  )}
-                  onClick={() => {
-                    setMostrarPrimeiraLeitura(!mostrarPrimeiraLeitura)
-                    setMostrarSalmo(false)
-                    setMostrarSegundaLeitura(false)
-                    setMostrarEvangelho(false)
-                  }}
-                >
-                  1ª Leitura
-                </button>
-                {(leituras.salmo.length > 0 ||
-                  leituras.segundaLeitura.length > 0 ||
-                  leituras.evangelho.length > 0) && (
-                    <span className="text-gray-300 select-none">|</span>
-                  )}
-              </>
-            )}
-
-            {/* Salmo */}
-            {leituras.salmo.length > 0 && (
-              <>
-                <button
-                  className={clsx(
-                    "transition-colors font-medium text-xl",
-                    mostrarSalmo
-                      ? ["font-semibold", getTextColor(cor)]
-                      : ["text-gray-400", getHoverText(cor)]
-                  )}
-                  onClick={() => {
-                    setMostrarSalmo(!mostrarSalmo)
-                    setMostrarPrimeiraLeitura(false)
-                    setMostrarSegundaLeitura(false)
-                    setMostrarEvangelho(false)
-                  }}
-                >
-                  Salmo
-                </button>
-                {(leituras.segundaLeitura.length > 0 ||
-                  leituras.evangelho.length > 0) && (
-                    <span className="text-gray-300 select-none">|</span>
-                  )}
-              </>
-            )}
-
-            {/* Segunda Leitura */}
-            {leituras.segundaLeitura.length > 0 && (
-              <>
-                <button
-                  className={clsx(
-                    "transition-colors font-medium text-xl",
-                    mostrarSegundaLeitura
-                      ? ["font-semibold", getTextColor(cor)]
-                      : ["text-gray-500", getHoverText(cor)]
-                  )}
-                  onClick={() => {
-                    setMostrarSegundaLeitura(!mostrarSegundaLeitura)
-                    setMostrarPrimeiraLeitura(false)
-                    setMostrarSalmo(false)
-                    setMostrarEvangelho(false)
-                  }}
-                >
-                  2ª Leitura
-                </button>
-                {leituras.evangelho.length > 0 && (
-                  <span className="text-gray-300 select-none">|</span>
-                )}
-              </>
-            )}
-
-            {/* Evangelho */}
-            {leituras.evangelho.length > 0 && (
-              <button
-                className={clsx(
-                  "transition-colors font-medium text-xl",
-                  mostrarEvangelho
-                    ? ["font-semibold", getTextColor(cor)]
-                    : ["text-gray-400", getHoverText(cor)]
-                )}
-                onClick={() => {
-                  setMostrarEvangelho(!mostrarEvangelho)
-                  setMostrarPrimeiraLeitura(false)
-                  setMostrarSalmo(false)
-                  setMostrarSegundaLeitura(false)
-                }}
-              >
-                Evangelho
-              </button>
-            )}
-          </div>
-
-          {/* Primeira Leitura */}
-          {mostrarPrimeiraLeitura && (
-            <div className={`${getBgGlass(cor)} ${getBorderGlass(cor)} gap-5 grid w-[90%] md:w-[70%] lg:w-[40%] mx-auto p-8 rounded-2xl shadow-2xl transition-all duration-500`}>
-              <p className="text-xl md:text-lg font-semibold text-gray-800">
-                Primeira Leitura ({leituras.primeiraLeitura[0].referencia})
-              </p>
-              <p className="text-xl md:text-lg font-semibold text-gray-700">
-                {leituras.primeiraLeitura[0].titulo}
-              </p>
-              <div className="pl-5 italic text-gray-600 text-base md:text-sm leading-relaxed">
-                {leituras.primeiraLeitura[0].texto}
-              </div>
-              <p className="text-lg md:text-base text-gray-700 mt-4">- Palavra do Senhor</p>
-              <p className="text-lg md:text-base font-semibold text-gray-800">- Graças a Deus</p>
-            </div>
-          )}
-
-          {/* Salmo */}
-          {mostrarSalmo && (
-            <div className={`${getBgGlass(cor)} ${getBorderGlass(cor)} gap-5 grid w-[90%] md:w-[70%] lg:w-[40%] mx-auto p-8 rounded-2xl shadow-2xl transition-all duration-500`}>
-              <h2 className="text-xl md:text-lg font-semibold text-gray-800">
-                Responsório {leituras.salmo[0].referencia}
-              </h2>
-              <p className="text-lg md:text-base font-semibold text-gray-700">
-                Refrão: {leituras.salmo[0].refrao}
-              </p>
-              <p className="italic text-gray-600 text-base md:text-sm leading-relaxed">
-                {leituras.salmo[0].texto}
-              </p>
-            </div>
-          )}
-
-          {/* Segunda Leitura */}
-          {mostrarSegundaLeitura && (
-            <div className={`${getBgGlass(cor)} ${getBorderGlass(cor)} gap-5 grid w-[90%] md:w-[70%] lg:w-[40%] mx-auto p-8 rounded-2xl shadow-2xl transition-all duration-500`}>
-              <p className="text-xl md:text-lg font-semibold text-gray-800">
-                Segunda Leitura ({leituras.segundaLeitura[0].referencia})
-              </p>
-              <p className="text-xl md:text-lg font-semibold text-gray-700">
-                {leituras.segundaLeitura[0].titulo}
-              </p>
-              <p className="italic text-gray-600 text-base md:text-sm leading-relaxed">
-                {leituras.segundaLeitura[0].texto}
-              </p>
-              <p className="text-lg md:text-base text-gray-700 mt-4">- Palavra do Senhor</p>
-              <p className="text-lg md:text-base font-semibold text-gray-800">- Graças a Deus</p>
-            </div>
-          )}
-
-          {/* Evangelho */}
-          {mostrarEvangelho && (
-            <div className={`${getBgGlass(cor)} ${getBorderGlass(cor)} gap-5 grid w-[90%] md:w-[70%] lg:w-[40%] mx-auto p-8 rounded-2xl shadow-2xl transition-all duration-500`}>
-              <p className="text-xl md:text-lg font-semibold text-gray-800">
-                Evangelho ({leituras.evangelho[0].referencia})
-              </p>
-              <h2 className="text-xl md:text-lg font-semibold text-gray-700">
-                {leituras.evangelho[0].titulo}
-              </h2>
-              <p className="italic text-gray-600 text-base md:text-sm leading-relaxed">
-                {leituras.evangelho[0].texto}
-              </p>
-              <p className="text-lg md:text-base text-gray-700 mt-4">- Palavra da Salvação</p>
-              <p className="text-lg md:text-base font-semibold text-gray-800">- Glória a vós, Senhor</p>
-            </div>
-          )}
-        </div>
-      </section>
-    </main>
-  );
+  ]
 };
 
-export default Leituras;
+const tabNames = {
+  primeiraLeitura: '1ª Leitura',
+  salmo: 'Salmo',
+  segundaLeitura: '2ª Leitura',
+  evangelho: 'Evangelho',
+  homilia: 'Homilia',
+};
+
+const liturgicalColors = {
+  Verde: '#5B8060',
+  Vermelho: '#AE463D',
+  Roxo: '#73537B',
+  Branco: '#B28A42',
+  Rosa: '#B95E78',
+};
+
+export default function Leituras() {
+  const [data, setData] = useState(null);
+  const [liturgia, setLiturgia] = useState('Liturgia diária');
+  const [color, setColor] = useState('#B84A13');
+  const [active, setActive] = useState('evangelho');
+  const [focus, setFocus] = useState(false);
+
+  useEffect(() => {
+    // 1. Fetch liturgia from Canção Nova
+    const fetchLiturgia = fetch('https://liturgia.up.railway.app/v2/')
+      .then((r) => r.json());
+
+    // 2. Fetch Homilia from local API
+    const fetchHomilia = fetch('http://localhost:3000/api/daily-reflection')
+      .then((r) => r.json())
+      .catch(() => null); // Silent fallback
+
+    Promise.allSettled([fetchLiturgia, fetchHomilia]).then((results) => {
+      let combinedData = { ...fallback };
+      
+      // Handle Liturgia
+      if (results[0].status === 'fulfilled' && results[0].value) {
+        const d = results[0].value;
+        combinedData = { ...combinedData, ...d.leituras };
+        setLiturgia(d.liturgia || 'Liturgia diária');
+        setColor(liturgicalColors[d.cor] || '#B84A13');
+      }
+
+      // Handle Homilia
+      if (results[1].status === 'fulfilled' && results[1].value) {
+        const homiliaData = results[1].value;
+        combinedData.homilia = [
+          {
+            referencia: 'Homilia do Dia',
+            titulo: homiliaData.title || 'Reflexão',
+            texto: homiliaData.content || 'Sem reflexão disponível hoje.',
+          }
+        ];
+      }
+
+      setData(combinedData);
+    });
+  }, []);
+
+  // Lock scroll when focus mode is active
+  useEffect(() => {
+    if (focus) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [focus]);
+
+  /* ── Loading state ── */
+  if (!data) {
+    return (
+      <main className="page">
+        <div className="skeleton" style={{ width: '30%', height: '0.8rem', marginBottom: '0.6rem' }} />
+        <div className="skeleton" style={{ width: '60%', height: '2.2rem', marginBottom: '1rem' }} />
+        <div className="skeleton" style={{ width: '80%', height: '1rem', marginBottom: '2rem' }} />
+        <div className="skeleton large" />
+      </main>
+    );
+  }
+
+  const available = Object.keys(tabNames).filter((k) => data[k] && data[k].length > 0);
+  const reading = data[active]?.[0] || data[available[0]]?.[0];
+
+  /* ── Reading card component ── */
+  const ReadingCard = ({ expanded = false }) => (
+    <article
+      className="reading-card"
+      style={{
+        '--liturgical-color': color,
+        fontSize: expanded ? '1.1rem' : undefined,
+      }}
+    >
+      <p className="eyebrow" style={{ color }}>
+        {tabNames[active]} {reading.referencia && `· ${reading.referencia}`}
+      </p>
+      <h2>{reading.titulo}</h2>
+      <p className="reading-text">{reading.texto}</p>
+
+      {active === 'evangelho' && (
+        <p className="reading-text" style={{ marginTop: '1.5rem' }}>
+          <strong>— Palavra da Salvação.</strong>
+          <br />
+          — Glória a vós, Senhor.
+        </p>
+      )}
+    </article>
+  );
+
+  return (
+    <>
+    <main className="page">
+      {/* ── Page header ── */}
+      <span className="eyebrow">Palavra de hoje</span>
+      <h1 className="section-title">{liturgia}</h1>
+      <p className="lead">
+        Acompanhe a liturgia e reserve alguns minutos para acolher a Palavra.
+      </p>
+
+      {/* ── Liturgical color indicator ── */}
+      <div
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '0.5rem',
+          marginTop: '0.75rem',
+          fontSize: '0.82rem',
+          color: color,
+          fontWeight: 600,
+        }}
+      >
+        <span
+          style={{
+            width: 10,
+            height: 10,
+            borderRadius: '50%',
+            background: color,
+            display: 'inline-block',
+          }}
+        />
+        Cor litúrgica - {Object.entries(liturgicalColors).find(([_, c]) => c === color)?.[0] || 'Desconhecida'}
+      </div>
+
+      {/* ── Tabs ── */}
+      <div className="tabs">
+        {available.map((k) => (
+          <button
+            className={`tab ${active === k ? 'active' : ''}`}
+            style={active === k ? { '--liturgical-color': color } : {}}
+            onClick={() => setActive(k)}
+            key={k}
+          >
+            {tabNames[k]}
+          </button>
+        ))}
+      </div>
+
+      {/* ── Reading content ── */}
+      <div className="reading-actions">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: [0.33, 1, 0.68, 1] }}
+            style={{ width: '100%' }}
+          >
+            <ReadingCard />
+          </motion.div>
+        </AnimatePresence>
+
+        <button
+          className="btn-ghost btn"
+          onClick={() => setFocus(true)}
+          style={{ marginTop: '1rem' }}
+        >
+          <Maximize2 size={16} />
+          Modo foco
+        </button>
+      </div>
+
+      {/* ── Focus overlay ── */}
+      <AnimatePresence>
+        {focus && (
+          <motion.div
+            className="focus-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="focus-header">
+              <span className="eyebrow" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                <BookOpen size={15} />
+                Modo foco
+              </span>
+              <button className="btn-ghost btn" onClick={() => setFocus(false)}>
+                <X size={16} />
+                Fechar
+              </button>
+            </div>
+            <ReadingCard expanded />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    <div style={{ marginTop: '2rem', fontSize: '0.9rem'}}>
+      Fonte: Liturgia Diária - Canção Nova
+    </div>
+    </main>
+    </>
+  );
+}

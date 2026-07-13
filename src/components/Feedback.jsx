@@ -1,69 +1,63 @@
-import { useState } from "react";
-const Feedback = () => {
-  const [showForm, setShowForm] = useState(false);
+import { MessageCircle, X } from 'lucide-react';
+import { useState } from 'react';
+
+export default function Feedback() {
+  const [open, setOpen] = useState(false);
+
   return (
     <>
-      <div className="flex justify-end bottom-15 mr-10 mt-6 sticky">
-        <button
-          className="hover:cursor-pointer  bg-sky-500 text-white md:mr-0 mr-5 text-sm font-semibold px-4 py-2 rounded-full shadow-lg hover:bg-blue-600 transition-all"
-          onClick={() => setShowForm(true)}
-        >
-          <div className="flex gap-2 items-center">
-            <span className="fa-solid fa-comment"></span>
-            <span id="feedback" className='hidden md:inline bebas-neue-regular'>Enviar Feedback</span>
-          </div>
+      {/* Floating button */}
+      <div className="feedback">
+        <button className="btn" onClick={() => setOpen(true)}>
+          <MessageCircle size={16} />
+          <span>Feedback</span>
         </button>
       </div>
 
-
-
-      {showForm && (
+      {/* Modal */}
+      {open && (
         <div
-          style={{ background: "rgba(0, 0, 0, 0.7)" }}
-          className="fixed inset-0 bg-gray-900 bg-opacity-70 flex justify-center items-center z-50"
+          className="modal-backdrop"
+          role="dialog"
+          aria-modal="true"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setOpen(false);
+          }}
         >
-          <div className="bg-white p-6 rounded-xl shadow-xl w-[90%] max-w-md md:max-w-lg h-auto max-h-[70vh] flex flex-col">
-            {/* Título */}
-            <h2 className="text-xl md:text-2xl font-serif font-semibold text-gray-800 mb-4">
-              Enviar Feedback
-            </h2>
-
-            {/* Mensagem Informativa */}
-            <div className="p-4 mb-4 bg-gray-100 rounded-2xl text-gray-700 text-sm md:text-base leading-relaxed">
-              Escreva abaixo sua sugestão do que precisa ser modificado ou do que pode ser melhorado.
+          <div className="modal-box">
+            <div className="modal-header">
+              <div>
+                <h2 className="section-title" style={{ fontSize: '1.6rem', margin: 0 }}>
+                  Sua voz importa
+                </h2>
+                <p className="lead" style={{ marginTop: '0.4rem' }}>
+                  Conte-nos como tornar este momento de oração ainda melhor.
+                </p>
+              </div>
+              <button
+                className="menu-toggle"
+                onClick={() => setOpen(false)}
+                aria-label="Fechar"
+              >
+                <X size={22} />
+              </button>
             </div>
 
-            {/* Formulário */}
-            <form action="https://formspree.io/f/mqapqejd" method="POST" className="flex flex-col">
+            <form action="https://formspree.io/f/mqapqejd" method="POST">
               <textarea
                 name="message"
-                className="w-full p-3 border border-gray-300 rounded-lg shadow-inner text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"
-                placeholder="Digite seu feedback..."
                 required
-              ></textarea>
-
-              {/* Botão Enviar */}
-              <button
-                type="submit"
-                className="mt-4 bg-blue-600 text-white px-5 py-2 rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg transition-all duration-200"
-              >
-                Enviar
-              </button>
-
-              {/* Botão Cancelar */}
-              <button
-                className="mt-3 text-red-600 hover:text-red-700 hover:underline text-sm md:text-base transition-colors duration-200"
-                onClick={() => setShowForm(false)}
-              >
-                Cancelar
-              </button>
+                placeholder="Escreva sua sugestão..."
+              />
+              <div className="modal-actions">
+                <button className="btn" type="submit">
+                  Enviar mensagem
+                </button>
+              </div>
             </form>
           </div>
         </div>
       )}
     </>
-
-  )
+  );
 }
-
-export default Feedback
