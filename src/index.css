@@ -330,6 +330,7 @@ h1, h2, h3, h4,
 .mobile-backdrop {
   position: fixed;
   inset: 0;
+  height: 100vh;
   z-index: 40;
   background: rgba(45, 36, 31, 0.3);
   backdrop-filter: blur(4px);
@@ -348,6 +349,7 @@ h1, h2, h3, h4,
   top: 0;
   right: 0;
   bottom: 0;
+  height: 100vh;
   z-index: 45;
   width: min(320px, 85vw);
   padding: 5.5rem 2rem 2rem;
