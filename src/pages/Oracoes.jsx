@@ -118,6 +118,12 @@ export default function Oracoes() {
           Como rezar o terço
         </button>
         <button
+          className={section === 'nordico' ? 'active' : ''}
+          onClick={() => setSection('nordico')}
+        >
+          Rosário Nórdico
+        </button>
+        <button
           className={section === 'oracoes' ? 'active' : ''}
           onClick={() => setSection('oracoes')}
         >
@@ -127,7 +133,7 @@ export default function Oracoes() {
 
       {/* ── Content ── */}
       <div className="prayer-layout">
-        {section === 'terco' ? (
+        {section === 'terco' && (
           <>
             {/* Step-by-step guide */}
             <motion.div
@@ -164,7 +170,37 @@ export default function Oracoes() {
               />
             </motion.div>
           </>
-        ) : (
+        )}
+
+        {section === 'nordico' && (
+          <motion.div
+            style={{ gridColumn: '1 / -1' }}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            <section className="oracoes-block block-nordico" style={{ margin: 0 }}>
+              <h2 className="section-title" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.2rem)' }}>Rosário das Cláusulas (Nórdico)</h2>
+              <p className="lead" style={{ marginBottom: '2rem' }}>Oração contínua com uma meditação específica inserida na Ave Maria.</p>
+              <div className="mini-card-grid">
+                <button className="mini-card" style={{'--accent': '#73B894'}} onClick={() => openNordicModal('gozosos')}>
+                  Mistérios Gozosos
+                </button>
+                <button className="mini-card" style={{'--accent': '#D4B86A'}} onClick={() => openNordicModal('luminosos')}>
+                  Mistérios Luminosos
+                </button>
+                <button className="mini-card" style={{'--accent': '#D27D7D'}} onClick={() => openNordicModal('dolorosos')}>
+                  Mistérios Dolorosos
+                </button>
+                <button className="mini-card" style={{'--accent': '#8AA8D0'}} onClick={() => openNordicModal('gloriosos')}>
+                  Mistérios Gloriosos
+                </button>
+              </div>
+            </section>
+          </motion.div>
+        )}
+
+        {section === 'oracoes' && (
           <motion.div
             style={{ gridColumn: '1 / -1' }}
             initial={{ opacity: 0, y: 12 }}
@@ -219,24 +255,7 @@ export default function Oracoes() {
           </motion.div>
         )}
       </div>
-      <section className="oracoes-block block-nordico">
-        <h2>Rosário das Cláusulas (Tradição Nórdica)</h2>
-        <p>Oração contínua com uma meditação específica inserida na Ave Maria.</p>
-        <div className="mini-card-grid">
-          <button className="mini-card" style={{'--accent': '#73B894'}} onClick={() => openNordicModal('gozosos')}>
-            Mistérios Gozosos
-          </button>
-          <button className="mini-card" style={{'--accent': '#D4B86A'}} onClick={() => openNordicModal('luminosos')}>
-            Mistérios Luminosos
-          </button>
-          <button className="mini-card" style={{'--accent': '#D27D7D'}} onClick={() => openNordicModal('dolorosos')}>
-            Mistérios Dolorosos
-          </button>
-          <button className="mini-card" style={{'--accent': '#8AA8D0'}} onClick={() => openNordicModal('gloriosos')}>
-            Mistérios Gloriosos
-          </button>
-        </div>
-      </section>
+      
       <NordicModal 
         isOpen={modalOpen} 
         onClose={() => setModalOpen(false)} 
