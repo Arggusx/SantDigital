@@ -43,10 +43,15 @@
   --liturgical-rosa:     #B95E78;
 
   /* Colors — Mystery accents */
-  --mystery-gozosos:   #6F8D64;
-  --mystery-dolorosos: #A95041;
-  --mystery-luminosos: #BF8C26;
-  --mystery-gloriosos: #6D7899;
+  --mystery-gozosos:   #73B894;
+  --mystery-dolorosos: #D27D7D;
+  --mystery-luminosos: #D4B86A;
+  --mystery-gloriosos: #8AA8D0;
+  
+  --focus-bg-gozosos: #E9F4EE;
+  --focus-bg-dolorosos: #F8EBEB;
+  --focus-bg-luminosos: #F7F3E8;
+  --focus-bg-gloriosos: #ECF1F7;
 
   /* Typography */
   --font-serif: 'Cormorant Garamond', 'Georgia', serif;
@@ -478,69 +483,226 @@ h1, h2, h3, h4,
   display: grid;
   gap: var(--space-md);
   margin-top: 2.2rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .mystery-card {
-  display: grid;
-  overflow: hidden;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   background: var(--color-surface);
   border-radius: var(--radius-lg);
-  border-left: 4px solid var(--accent);
+  border-top: 4px solid var(--accent);
+  box-shadow: var(--shadow-sm);
   transition:
     transform var(--duration-fast) var(--ease-out),
     box-shadow var(--duration-fast);
+  padding: 1.5rem;
 }
 
 .mystery-card:hover {
-  transform: scale(1.02);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
 }
 
-.mystery-content {
-  padding: 1.35rem;
+.mystery-card-header {
+  margin-bottom: var(--space-sm);
 }
 
 .mystery-card h2 {
-  color: var(--accent);
-  margin: 0;
-  font-size: 2rem;
+  color: var(--color-charcoal);
+  font-size: 1.8rem;
+  margin-bottom: 0.2rem;
 }
 
-.mystery-card .day {
+.mystery-card .subtitle {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
   font-size: var(--text-sm);
-  color: var(--color-text-light);
+  color: var(--color-text-muted);
+  font-weight: 500;
 }
 
-.mystery-card ol {
-  padding-left: 1.2rem;
-  margin: var(--space-md) 0 0;
+.mystery-card .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent);
+}
+
+.mystery-card .tagline {
+  font-size: 0.95rem;
   color: var(--color-text-soft);
+  margin-bottom: var(--space-md);
+  line-height: 1.5;
+}
+
+.mystery-prayer-box {
+  background-color: var(--bg-soft);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-lg);
+  flex-grow: 1;
+}
+
+.mystery-prayer-box p {
   font-size: 0.9rem;
-  line-height: 1.55;
-  list-style: decimal;
+  color: var(--color-text);
+  line-height: 1.6;
 }
 
-.mystery-card li + li {
-  margin-top: 0.3rem;
+.mystery-prayer-box strong {
+  color: var(--accent);
+  font-weight: 600;
 }
 
-.mystery-image {
-  display: none;
-  height: 100%;
-  min-height: 230px;
-  overflow: hidden;
-}
-
-.mystery-image img {
+.mystery-card .btn {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s var(--ease-out), opacity 0.5s;
+  background: var(--color-cream-warm);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
 }
 
-.mystery-card:hover .mystery-image img {
-  transform: scale(1.05);
+.mystery-card .btn:hover {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+/* ---------- 9.5. FOCUS MODE ---------- */
+.focus-mode-container {
+  min-height: 100vh;
+  background-color: var(--color-cream-light);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-xl) var(--space-md);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.focus-header {
+  text-align: center;
+  color: var(--color-text-faint);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-xl);
+  font-weight: 600;
+}
+
+.focus-mystery-title {
+  text-align: center;
+  margin-bottom: var(--space-md);
+}
+
+.focus-mystery-title h1 {
+  font-size: 2.2rem;
+  color: var(--color-charcoal);
+  margin-bottom: var(--space-sm);
+}
+
+.focus-meditation {
+  text-align: center;
+  color: var(--color-text-soft);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: var(--space-2xl);
+}
+
+.focus-prayer-card {
+  background-color: var(--focus-bg);
+  padding: 2rem 1.5rem;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  margin-bottom: auto;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+}
+
+.focus-prayer-card p {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--color-text);
+}
+
+.focus-clause {
+  display: block;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--accent);
+  margin: 1rem 0;
+  font-size: 1.2rem;
+}
+
+.focus-bottom-bar {
+  margin-top: var(--space-3xl);
+  padding-bottom: var(--space-md);
+}
+
+.beads-counter {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: var(--space-xl);
+}
+
+.bead {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #E0DCD6;
+  transition: background-color 0.3s ease;
+}
+
+.bead.filled {
+  background-color: var(--accent);
+}
+
+.focus-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-nav {
+  padding: 0.8rem 1.2rem;
+  border-radius: var(--radius-full);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.btn-prev {
+  color: var(--color-text-faint);
+}
+
+.btn-prev:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+.btn-next {
+  background-color: var(--accent);
+  color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.btn-next:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
 }
 
 
@@ -798,7 +960,253 @@ h1, h2, h3, h4,
 
 
 /* ---------- 12. CURIOSIDADES / FAQ ---------- */
-.faq-categories {
+/* Keeping existing code ... just appending below */
+
+/* ---------- 13. ORAÇÕES PAGE & MODALS ---------- */
+.oracoes-page {
+  padding-top: 6.5rem;
+}
+
+.oracoes-block {
+  margin: var(--space-xl) 0;
+}
+
+.oracoes-block h2 {
+  font-size: 1.8rem;
+  color: var(--color-charcoal);
+  margin-bottom: var(--space-xs);
+  font-family: var(--font-serif);
+}
+
+.oracoes-block p {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-lg);
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background: var(--color-border);
+  margin: var(--space-2xl) 0;
+}
+
+.mini-card-grid {
+  display: grid;
+  grid-template-columns:  1fr 1fr;
+  gap: var(--space-md);
+}
+
+.mini-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--accent);
+  padding: 1.2rem;
+  border-radius: var(--radius-md);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-charcoal);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.mini-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent);
+}
+
+.library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-md);
+}
+
+.library-card {
+  background: var(--color-cream-warm);
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+}
+
+.library-badge {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-faint);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.library-card h3 {
+  font-size: 1.2rem;
+  color: var(--color-terracotta-dark);
+  margin-bottom: 0.8rem;
+  font-family: var(--font-sans);
+}
+
+.library-card p {
+  color: var(--color-text-soft);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  margin-bottom: 0;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(45, 36, 31, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 0;
+}
+
+.modal-content.nordic-modal {
+  position: relative;
+  z-index: 101;
+  width: 90%;
+  max-width: 650px;
+  max-height: 90vh;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  overflow-y: auto;
+  border-top: 6px solid var(--accent);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.modal-close:hover {
+  background: rgba(0,0,0,0.05);
+  color: var(--color-charcoal);
+}
+
+.nordic-header {
+  padding: 2rem 2rem 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nordic-header h2 {
+  font-size: 1.3rem;
+  color: var(--color-text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: var(--font-sans);
+  margin-bottom: 0.5rem;
+}
+
+.nordic-header h3 {
+  font-size: 2.2rem;
+  color: var(--accent);
+  margin-bottom: 0.2rem;
+  font-family: var(--font-serif);
+}
+
+.nordic-subtitle {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.nordic-body {
+  padding: 2rem;
+}
+
+.nordic-mystery-section {
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px dashed var(--color-border);
+}
+
+.nordic-mystery-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.nordic-mystery-title {
+  font-size: 1.6rem;
+  color: var(--color-charcoal);
+  margin-bottom: 0.5rem;
+  font-family: var(--font-serif);
+}
+
+.nordic-meditation {
+  color: var(--color-text-soft);
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+.nordic-prayer-block {
+  background: var(--color-cream-warm);
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+}
+
+.nordic-our-father, .nordic-glory {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+}
+
+.nordic-ave-marias {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.nordic-ave-maria {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.nordic-bead-number {
+  position: absolute;
+  left: 0;
+  color: var(--color-text-faint);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.nordic-clause {
+  color: var(--accent);
+  font-weight: 600;
+}.faq-categories {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
