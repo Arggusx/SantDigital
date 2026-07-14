@@ -66,7 +66,7 @@ export default function Leituras() {
       .then((r) => r.json());
 
     // 2. Fetch Homilia from local API
-    const fetchHomilia = fetch(`${import.meta.env.VITE_API_HOMILIA}/api/daily-reflection`)
+    const fetchHomilia = fetch(`${import.meta.env.VITE_API_ORACAO}/api/daily-reflection`)
       .then((r) => r.json())
       .catch(() => null); // Silent fallback
 
